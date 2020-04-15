@@ -1,1 +1,1 @@
-# COMP307---Marketplace McGill Winter 2020
+# COMP307 - Marketplace McGill Winter 2020
