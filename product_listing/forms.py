@@ -1,4 +1,5 @@
 from django import forms
+from smart_selects.db_fields import ChainedForeignKey
 
 class ListingForm(forms.Form):
     name = models.CharField()
