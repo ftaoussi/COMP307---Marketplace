@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate
+
 def signup (request): 
     context={}
     if request.method == 'POST':
