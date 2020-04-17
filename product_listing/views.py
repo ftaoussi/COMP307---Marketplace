@@ -11,11 +11,11 @@ def listItem(request):
         form = forms.ListingForm(request.POST)
         if form.is_valid():
             try:
-                itemListing = Listing(
+                product = Product(
                     name = form.cleaned_data['name'],
                     seller = form.cleaned_data['seller'],
                     price_initial = form.cleaned_data['price_initial'],
-                    price_current = price_initial
+                    price_current = price_initial,
                     category = form.cleaned_data['category'],
                     subcategory = form.cleaned_data['subcategory'],
                     location = form.cleaned_data['location'],
@@ -24,15 +24,16 @@ def listItem(request):
                     stock = form.cleaned_data['stock'],
                     size = form.cleaned_data['size']
                 )
-                itemListing.save()
-                image = Image(img=form.cleaned_data['image'],listing = itemListing)
+                product.save()
+                image = Image(img=form.cleaned_data['image'],product = product)
                 image.save()
                 return HttpResponseRedirect(reverse('index'))
             except: 
-                forms.add_error(None, 'Unable to make listing')
+                forms.add_error(None, 'Unable to list product')
         context['form'] = form
     return render(request, 'list', context)
 
 def viewItem(request, product_id): 
     #implement
+    return HttpResponse("test")
 

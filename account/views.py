@@ -1,15 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
 from django.contrib.auth import authenticate
 from django.shortcuts import render
 from django.http import HttpResponse
-from . import forms
+import account.forms
 
 def signup (request): 
     context={}
     if request.method == 'POST':
-        form = forms.SignupForm(request.POST)
+        form = account.forms.SignupForm(request.POST)
         if form.is_valid():
             try:
                 user = User.obje
@@ -19,15 +16,15 @@ def signup (request):
                     password = form.cleaned_data['password']
                 )
                 return HttpResponseRedirect(reverse('login'))
-             except IntegrityError:
+            except IntegrityError:
                  forms.add_error('username', 'Username is taken')
         context['form'] = form
     return render(request, 'signup.html', context)
     
 def loginUser(request):
-      context={}
-      if method=='POST':
-        form = forms.SignInForm(request.POST)
+    context={}
+    if method=='POST':
+        form = account.forms.SignInForm(request.POST)
         if form.is_valid():
             user = authenticate(request, username=form.cleaned_data['name'],password=form.cleaned_data['password'])
             if user is not None:
@@ -36,12 +33,12 @@ def loginUser(request):
             else:
                 forms.add_error('password','Invalid username or password')
         context['form'] = form
-
-    return render(request, 'login', context)
+    return render(request, 'login.html', context)
 
 def index(request): 
     context={}
     return render(request, 'account.html', context)
 
 def logout(request):
+    return HttpResponse("Logged out.")
     #implementation

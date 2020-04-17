@@ -7,10 +7,13 @@ def index(request):
 
 def viewCart(request): 
 	#
+	return HttpResponse("test")
 
 def modifyCart(request, action, product_id):
 	#
+	return HttpResponse("test")
 
 def checkout(request):
 	#
+	return HttpResponse("test")
 
