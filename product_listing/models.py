@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User 
 
 
+
 class Category(models.Model): 
     name = models.CharField(unique=True)
     def __str__ (self):
@@ -34,7 +35,7 @@ class Listings(models.Model):
     def __str__(self):
         return self.name
     def get_absolute_url(self):
-        return reverse("", kwargs={id = self.id})
+        return "/product/%i/" % self.id
 
 class Orders(models.Model):
     seller = models.ForeignKey(User)

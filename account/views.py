@@ -1,6 +1,47 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
-def index(request):
-	return HttpResponse('Account view');
+from django.contrib.auth import authenticate
+from django.shortcuts import render
+from django.http import HttpResponse
+from . import forms
+
+def signup (request): 
+    context={}
+    if request.method == 'POST':
+        form = forms.SignupForm(request.POST)
+        if form.is_valid():
+            try:
+                user = User.obje
+                cts.create_user(
+                    username=form.cleaned_data['username'],
+                    email = form.cleaned_data['email'],
+                    password = form.cleaned_data['password']
+                )
+                return HttpResponseRedirect(reverse('login'))
+             except IntegrityError:
+                 forms.add_error('username', 'Username is taken')
+        context['form'] = form
+    return render(request, 'signup.html', context)
+    
+def loginUser(request):
+      context={}
+      if method=='POST':
+        form = forms.SignInForm(request.POST)
+        if form.is_valid():
+            user = authenticate(request, username=form.cleaned_data['name'],password=form.cleaned_data['password'])
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index.html'))
+            else:
+                forms.add_error('password','Invalid username or password')
+        context['form'] = form
+
+    return render(request, 'login', context)
+
+def index(request): 
+    context={}
+    return render(request, 'account.html', context)
+
+def logout(request):
+    #implementation
