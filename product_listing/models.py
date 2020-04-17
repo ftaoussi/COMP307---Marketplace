@@ -52,7 +52,7 @@ class Orders(models.Model):
         str1=seller.__str__()
         str2=product.__str__()
         str3=buyer.__str__()
-        return (str1+" -> "+str2+" ->"str3)
+        return (str1 + ", " + str2 + ", " + str3)
     
 class Image(models.Model): 
     img = models.ImageField
