@@ -6,9 +6,10 @@
     <title>User Authentification</title>
 </head>
 <body>
-    Click button to contact seller<br>
+    Please log in or sign up!<br>
 <!--    <input id="room-name-input" type="text" size="100"><br> -->
-    <input id="room-name-submit" type="button" value="Enter">
+    <input id="user-log-in" type="button" value="Log in">
+    <input id="user-sign-up" type="button" value="Sign up">
 
     <script>
 //        document.querySelector('#room-name-input').focus();
@@ -18,12 +19,11 @@
 //            }
 //        };
 
-        document.querySelector('#room-name-submit').onclick = function(e) {
-            var roomName = "";//document.querySelector('#room-name-input').value;
-            
-            roomName = "will_be_seller_name";
-            
-            window.location.pathname = '/chat/' + roomName + '/';
+        document.querySelector('#user-log-in').onclick = function(e) {
+            window.location.pathname = '/chat/' + 'login' + '/';
+        };
+        document.querySelector('#user-sign-up').onclick = function(e) {
+            window.location.pathname = '/chat/' + 'login' + '/';
         };
     </script>
 </body>
