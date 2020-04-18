@@ -37,7 +37,7 @@ def loginUser(request):
 
 def index(request): 
     context={}
-    return render(request, 'account.html', context)
+    return render(request, 'account/index.html', context)
 
 def logout(request):
     return HttpResponse("Logged out.")
