@@ -21,10 +21,7 @@
         document.querySelector('#room-name-submit').onclick = function(e) {
             var roomName = "";//document.querySelector('#room-name-input').value;
             
-            if user.is_authenticated:
-                roomName = {{user}};
-            else:
-                roomName = "global";
+            roomName = "will_be_seller_name";
             
             window.location.pathname = '/chat/' + roomName + '/';
         };
