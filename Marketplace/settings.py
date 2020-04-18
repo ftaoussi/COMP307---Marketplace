@@ -137,3 +137,4 @@ CHANNEL_LAYERS = {
         },
     },
 }
+LOGIN_URL = '/account/login'
