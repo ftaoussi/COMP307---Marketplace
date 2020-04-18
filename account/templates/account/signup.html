@@ -1,1 +1,21 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Sign up</title>
+</head>
+<body>
+    <h3>Signup<\h3><br>
+    <input id="username" type="text" size="50"><br>
+    <input id="password" type="text" size="50">
+    <input id="validate" type="button" value="Enter">
 
+    <script>
+        document.querySelector('#validate').onclick = function(e) {
+           //need to verify that the user is not taken and to add to db of users
+            window.location.pathname = '/'; //bring user back to the main listing page
+        };
+    </script>
+</body>
+</html>
