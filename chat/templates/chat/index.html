@@ -19,7 +19,13 @@
         };
 
         document.querySelector('#room-name-submit').onclick = function(e) {
-            var roomName = {{ user }};//document.querySelector('#room-name-input').value;
+            var roomName;//document.querySelector('#room-name-input').value;
+            
+            if user.is_authenticated:
+                roomName = {{user}};
+            else:
+                roomName = "global";
+            
             window.location.pathname = '/chat/' + roomName + '/';
         };
     </script>
