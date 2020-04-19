@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     #this will be the homepage of the entire site
-	return render(request, 'index.html')
+	return render(request, 'product_listing/index.html')
 def listItem(request):
     context={}
     if request.method=='POST':

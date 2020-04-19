@@ -3,11 +3,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-	return HttpResponse('Cart view');
-
-def viewCart(request): 
-	#
-	return HttpResponse("test")
+	context = {}
+	return render(request, 'cart/cart.html', context)
 
 def modifyCart(request, action, product_id):
 	#

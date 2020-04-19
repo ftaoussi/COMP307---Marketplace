@@ -4,7 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
-class SignupForm(forms.Form): 
+class SignUpForm(forms.Form): 
     username = forms.CharField()
     email = forms.EmailField(
         validators=[validate_email]

@@ -1,16 +1,44 @@
-<!--  -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>User Authentification</title>
-</head>
-<body>
-    Please log in or sign up!<br>
-<!--    <input id="room-name-input" type="text" size="100"><br> -->
-    <input id="user-log-in" type="button" value="Log in">
-    <input id="user-sign-up" type="button" value="Sign up">
+{% extends 'product_listing/global_template.html'%}
 
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class='account-container'>
+            <div class='user-info'>
+                <div class='user-username'>
+                    <div class='info-label'>Username</div>
+                    <div class='info-value'>{{user.username}}</div>
+                </div>
+                <div class='user-email'>
+                    <div class='info-label'>Email</div>
+                    <div class='info-value'>{{user.email}}</div>
+                </div>
+            </div>
+
+            <div class='user-listings'>
+            {% comment %} {% for l in listings %}
+
+            {% endfor %} {% endcomment %}
+            </div>
+
+            <div class='user-orders'>
+
+            </div>
+        </div>
+
+        
+    {% else %}
+    Please log in or sign up!<br>
+    {% comment %} <div class="auth-choice-container">
+      <div class="auth-choice"><a href="{% url 'account:login' %}">Login</a></div>
+      <div class="auth-choice"><input type="submit" action="logout" value="Logout"></div>
+      <div class="auth-choice"><a href="{% url 'account:login' %}">Signup</a></div>
+    </div> {% endcomment %}
+
+
+      <input id="user-login" type="button" value="Login">
+      <input id="user-signup" type="button" value="Signup">
+      <input id='logout' type='button' value='Logout'>
+      {% endif %}
     <script>
 //        document.querySelector('#room-name-input').focus();
 //        document.querySelector('#room-name-input').onkeyup = function(e) {
@@ -19,12 +47,14 @@
 //            }
 //        };
 
-        document.querySelector('#user-log-in').onclick = function(e) {
+        document.querySelector('#user-login').onclick = function(e) {
             window.location.pathname = '/account/' + 'login' + '/';
         };
-        document.querySelector('#user-sign-up').onclick = function(e) {
+        document.querySelector('#user-signup').onclick = function(e) {
             window.location.pathname = '/account/' + 'signup' + '/';
         };
+        document.querySelector('#logout').onclick = function(e) {
+            window.location.pathname = '';
+        };
     </script>
-</body>
-</html>
+{% endblock %}

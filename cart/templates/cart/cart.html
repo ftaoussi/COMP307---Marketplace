@@ -1,0 +1,12 @@
+{% extends 'product_listing/global_template.html'%}
+
+
+<div class='cart-container'>
+	{% if user.is_authenticated %}
+		{% comment %} {% for l in listing %}
+
+		{% endfor %} {% endcomment %}
+	{% else %}
+		<div class='no-cart'>To add items to cart, sign in.</div>
+	{% endif %}
+</div>

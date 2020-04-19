@@ -6,10 +6,10 @@
 </head>
 <body>
 <div>
-    <a href="{% url 'index' %}">Home</a>
-    <a href="{% url 'signup' %}">Signup</a>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'product_listing:index' %}">Home</a>
+    <a href="{% url 'account:signup' %}">Signup</a>
+    <a href="{% url 'account:login' %}">Login</a>
+    <a href="{% url 'account:logout' %}">Logout</a>
     </div>
 
     <textarea id="chat-log" cols="100" rows="20"></textarea><br/>

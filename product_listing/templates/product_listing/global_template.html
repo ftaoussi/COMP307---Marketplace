@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+	<meta charset='utf-8'>
+	<title>MTLeExchange</title>
+  </head>
+
+  <div class='header'>
+
+	<div class='name-container'>
+		<div class='name'>
+		  <a href="{% url 'product_listing:index' %}">MTLeExchange</a>
+		</div>
+	</div>
+
+    <div class='right'>
+		{% block nav %}
+			{% if user.is_authenticated %}
+			<div class='cart'>
+				<a href="{% url 'cart:index' %}">Cart</a>
+			</div>
+			<div class='profile'>
+				<a href="{% url 'account:index' %}">Profile</a>
+			</div>
+			<div class='logout'>
+				<a href="{% url 'account:logout' %}">Logout</a>
+			</div>
+			{% else %}
+			<div class='cart'>
+				<a href="{% url 'account:login' %}">Login</a>
+			</div>
+			<div class='profile'>
+				<a href="{% url 'account:signup' %}">Sign Up</a>
+			</div>
+			{% endif %}
+		{% endblock %}
+	</div>
+  </div>
+
+  <div class='container'>
+	{% block content %}
+	{% endblock %}
+  </div>
+</html>
