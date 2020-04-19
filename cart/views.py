@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from product_listing.models import Order
 import datetime
 
 # Create your views here.
 def index(request):
 	context={}
-	if (user.is_authenticated()):
+	if request.user.is_authenticated:
 		carts = Cart.objects.filter(user=request.user)
 		if carts is not None: 
 			cart = carts.first()
@@ -37,17 +36,16 @@ def modifyCart(request, action, product_id, option):
 		if userCart is None:
 			cart=Cart(user=request.user)
 			cart.save()
+			userCart = Cart.objects.filter(user=request.user)
 		if (action=='add'):
 			add_to_cart(request, product_id, option)
-		else if (action=='remove'):
+		elif (action=='remove'):
 			remove_from_cart(request, product_id, option)
-		else if (action=='clear'):
+		elif (action=='clear'):
 			clear_cart(request)
 		else:
 			return HttpResponse("Error")
-		context={}
-		user = request.user
-		context['cart'] = userCart
+		context['cart'] = userCart.first()
 		context['items'] = Item.objects.filter(cart=userCart)
 	else:
 		return reverse(request, 'login.html', context)
@@ -56,18 +54,29 @@ def modifyCart(request, action, product_id, option):
 def add_to_cart(request, product_id, quantity):
 	product = Product.objects.get(id=product_id)
 	this_user = request.user
-	user_carts = Cart.objects.filter(user=user)
-	if user_carts is None:
-		user_cart = user_carts.first()
-		user_cart = Cart(user=this_user)
-		user_cart.save()
+	usercarts = Cart.objects.filter(user=user)
+	usercart = user_carts.first()
+	itemsMatching = Item.objects.filter(product=product, cart=user_cart, unit_price=product.unit_price)
+	if itemsMatching is not None:
+		item = Item(
+			product=product,
+			cart = usercart,
+			quantity= quantity,
+			unit_price= product.price_current
+		)
+		item.save()
+	else:
+		itemMatching = itemsMatching.first()
+		itemMatching.quantity += quantity
+	
 	item = Item(
-		product=product
-		cart=user_cart
-		quantity= quantity
+		product=product,
+		cart = user_cart,
+		quantity= quantity,
 		unit_price= product.price_current
 	)
 	item.save()
+
 
 def remove_from_cart(request, product_id, quantity):
 	cart = Cart.objects.get(user=request.user)
@@ -86,7 +95,7 @@ def clear_cart(request):
 
 def checkout(request):
 	context={}
-	if (!request.user.is_authenticated()):
+	if request.user.is_authenticated == False:
 		return reverse(request, 'login.html',context)
 	cart = Cart.objects.get(user=request.user)
 	user = request.user
@@ -103,29 +112,31 @@ def checkout(request):
 							total += 1
 						else:
 							thisBasket = basket
-					if (total = baskets.size()):
+					if (total == baskets.size()):
 						thisBasket = Basket(
-							seller = item.seller
-							buyer = user
-							time = datetime.datetime.now()
+							seller = item.seller,
+							buyer = user,
+							time = datetime.datetime.now(),
 							shipping_to = shipaddr
 						)
 						thisBasket.save()
 						baskets.append(thisBasket)
 						
 					orderItem = OrderItem(
-						product_string = item.__str__()
-						unit_price = item.price
-						product = item
-						buyer = user
-						seller = item.seller
-						basket = thisBasket
-						quantity = item.quantity
+						product_string = item.__str__(),
+						unit_price = item.price,
+						product = item,
+						buyer = user,
+						seller = item.seller,
+						basket = thisBasket,
+						quantity = item.quantity,
 						shipping_to = shipaddr
 					)
 					orderItem.save()
 					product = item.product
 					product.stock -= item.quantity
+			except:
+				return HttpResponse("Please try again")
 	else:
 		context['form'] = forms.ShippingForm
 		return reverse(request, 'checkout.html', context)

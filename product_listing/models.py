@@ -51,5 +51,5 @@ class Product(models.Model):
         return (str1 + ", " + str2 + ", " + str3)
     
 class Image(models.Model): 
-    img = models.ImageField
+    img = models.ImageField(upload_to="gallery")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

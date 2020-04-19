@@ -16,14 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from product_listing.views.index
+from product_listing.views import index
+
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+ 
+ 
 
 urlpatterns = [
 	
 	path('account/', include('account.urls')),	
 	path('cart/', include('cart.urls')),
 	path('chat/', include('chat.urls')),
-    path('', product_listing.views.index, name='index'),
+    path('', index, name='index'),
 	path('product/', include('product_listing.urls')),
    	path('admin/', admin.site.urls),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
