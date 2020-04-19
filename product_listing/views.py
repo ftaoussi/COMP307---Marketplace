@@ -4,7 +4,8 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     #this will be the homepage of the entire site
-	return render(request, 'product_listing/index.html')
+	return HttpResponse('Currently on the main page of the site: will display a list of all the items for sale.');
+
 def listItem(request):
     context={}
     if request.method=='POST':
@@ -34,5 +35,10 @@ def listItem(request):
     return render(request, 'list', context)
 
 def viewItem(request, product_id): 
-    #implement
-    return HttpResponse("test")
+    context={}
+    product=Product.objects.filter(id=product_id)
+    img = Image.objects.filter(product=product)
+    context['product'] = product
+    context['image'] = img
+    return render(request,'product.html', context)
+

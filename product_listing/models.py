@@ -34,16 +34,13 @@ class Product(models.Model):
     def get_absolute_url(self):
         return "/product/%i/" % self.id
 
-class Orders(models.Model):
-    seller = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="seller")
-    buyer = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="buyer")
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
-    time = models.TextField()
-    price = models.IntegerField()
-    shipping_from = models.TextField()
-    shipping_to = models.TextField()
-    #PAYMENT_CHOICES=['PAYPAL','CASH']
-    #method_of_payment = models.CharField(choices=PAYMENT_CHOICES)
+#class Order(models.Model):
+#    seller = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="seller")
+#    buyer = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="buyer")
+#    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+#    time = models.TextField()
+#    price = models.IntegerField()
+#    shipping_to = models.TextField()
 
     def __str__(self):
         str1=seller.__str__()
@@ -52,5 +49,5 @@ class Orders(models.Model):
         return (str1 + ", " + str2 + ", " + str3)
     
 class Image(models.Model): 
-    img = models.ImageField
+    img = models.ImageField(upload_to="gallery")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
