@@ -1,8 +1,6 @@
 from django.db import models 
 from account.models import User 
 
-
-
 class Category(models.Model): 
     name = models.TextField(unique=True)
     def __str__ (self):
