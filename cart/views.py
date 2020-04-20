@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, reverse
 import datetime
+#from account.templates import login
 
 # Create your views here.
 def index(request):
