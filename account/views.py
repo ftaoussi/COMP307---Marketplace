@@ -43,7 +43,7 @@ def index(request):
         context={}
         #assign context variables
         return render(request, 'account.html', context)
-    return redirect('login.html') 
+    return redirect('/account/login') 
 
 @login_required
 def do_logout(request):
