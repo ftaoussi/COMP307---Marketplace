@@ -1,1 +1,23 @@
+{% extends 'product_listing/global_template.html' %}
 
+{% block content %}
+
+<div class='login-container'>
+  <form class='login-form' method='post'>
+    {% csrf_token %}
+
+	<div class='username-input'>
+	  <div class='input-label'>Username</div>
+	  <input name='username' type='text' size='20' value='{{ form.data.username}}'>
+	</div>
+	<div class='password-input'>
+	  <div class='input-label'>Password</div>
+	  <input name='password' type='password' size='20' value='{{ form.data.password}}'>
+	</div>
+	<div class='login-button'>
+	  <input type='submit' value='Login'>
+	</div>
+  </form>
+</div>
+
+{% endblock %}
