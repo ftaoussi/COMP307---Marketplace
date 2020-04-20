@@ -1,1 +1,38 @@
 
+{% extends 'product_listing/global_template.html' %}
+
+{% block content %}
+
+<div class='signup-container'>
+  <form class='signup-form' method='post'>
+    {% csrf_token %}
+
+    <div class='email-input'>
+	  <div class='input-label'>Email</div>
+	  <input name='email' type='text' size='20' value='{{ form.data.email}}'>
+      {{ form.email.errors }}
+    </div>
+
+	<div class='username-input'>
+	  <div class='input-label'>Username</div>
+	  <input name='username' type='text' size='20' value='{{ form.data.username}}'>
+      {{ form.username.errors }}
+    </div>
+
+	<div class='password-input'>
+	  <div class='input-label'>Password</div>
+	  <input name='password' type='password' size='20' value='{{ form.data.password}}'>
+      {{ form.password.errors }}
+    </div>
+    <div class='confirm-password-input'>
+	  <div class='input-label'>Confirm Password</div>
+	  <input name='confirm_password' type='password' size='20' value='{{ form.data.confirm_password}}'>
+	  {{ form.confirm_password.errors }}
+    </div>
+	<div class='signup-button'>
+	  <input type='submit' value='Signup'>
+	</div>
+  </form>
+</div>
+
+{% endblock %}
