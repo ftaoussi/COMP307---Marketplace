@@ -18,16 +18,16 @@ def index(request):
 			context['cart'] = cart
 		return reverse(request, 'cart.html', context)
 	else:
-		return redirect('login.html')
+		return reverse(request, 'login.html', context)
 
 
-def viewCart(request): 
-	context={}
-	user = request.user
-	cart = Cart.objects.get(user=user)
-	context['cart'] = cart
-	context['items'] = Item.objects.get(cart=cart)
-	return render(request, "cart.html", context)
+#def viewCart(request): 
+#	context={}
+#	user = request.user
+#	cart = Cart.objects.get(user=user)
+#	context['cart'] = cart
+#	context['items'] = Item.objects.get(cart=cart)
+#	return render(request, "cart.html", context)
 
 def modifyCart(request, action, product_id, option):
 	context = {}
