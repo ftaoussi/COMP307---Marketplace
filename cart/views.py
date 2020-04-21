@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, reverse
+from cart.models import Cart, Item
 import datetime
 #from account.templates import login
 
@@ -17,9 +18,7 @@ def index(request):
 			cart = Cart(user=request.user)
 			cart.save()
 			context['cart'] = cart
-		return reverse(request, 'cart.html', context)
-	else:
-		return reverse(request, 'login.html', context)
+	return render(request, 'cart/cart.html', context)
 
 
 #def viewCart(request): 
@@ -49,7 +48,7 @@ def modifyCart(request, action, product_id, option):
 		context['cart'] = userCart.first()
 		context['items'] = Item.objects.filter(cart=userCart)
 	else:
-		return reverse(request, 'login.html', context)
+		return reverse(request, 'account/login.html', context)
 	return redirect(request.path_info, context)
 
 def add_to_cart(request, product_id, quantity):
@@ -97,7 +96,7 @@ def clear_cart(request):
 def checkout(request):
 	context={}
 	if request.user.is_authenticated == False:
-		return reverse(request, 'login.html',context)
+		return reverse(request, 'account/login.html',context)
 	cart = Cart.objects.get(user=request.user)
 	user = request.user
 	baskets = []
@@ -140,6 +139,6 @@ def checkout(request):
 				return HttpResponse("Please try again")
 	else:
 		context['form'] = forms.ShippingForm
-		return reverse(request, 'checkout.html', context)
-	return reverse(request, 'checkoutsuccess.html', context)
+		return reverse(request, 'cart/checkout.html', context)
+	return reverse(request, 'cart/checkoutsuccess.html', context)
 

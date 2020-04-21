@@ -22,7 +22,7 @@ def signup(request):
             except IntegrityError:
                  form.add_error('username', 'Username is taken')
         context['form'] = form
-    return render(request, 'signup.html', context)
+    return render(request, 'account/signup.html', context)
     
 def loginUser(request):
     context={}
@@ -36,16 +36,16 @@ def loginUser(request):
             else:
                 form.add_error('password','Invalid username or password')
         context['form'] = form
-    return render(request, 'login.html', context)
+    return render(request, 'account/login.html', context)
 
 def index(request):
     if request.user.is_authenticated:
         context={}
         #assign context variables
-        return render(request, 'account.html', context)
-    return redirect('/account/login') 
+        return render(request, 'account/index.html', context)
+    return redirect('/account/login.html') 
 
 @login_required
 def do_logout(request):
     logout(request)
-    return render(request, 'account.html')
+    return render(request, 'account/index.html')

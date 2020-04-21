@@ -1,0 +1,34 @@
+{% extends 'product_listing/global_template.html' %}
+
+{% block content %}
+
+<form class='listing-form' method='post'>
+	{% csrf_token %}
+	<div class='listing-single-input'>
+	  	<div class='listing-input-label'>Name</div>
+	  	<input name='name' type='text' size='20' value='{{ form.data.name}}'>
+    </div>
+
+	<div class='listing-single-input'>
+	  	<div class='listing-input-label'>Price</div>
+	  	<input name='price_initial' type='number' size='20' value='{{ form.data.price}}'>
+    </div>
+
+	<div class='listing-single-input'>
+	  	<div class='listing-input-label'>Size</div>
+	  	<input name='size' type='text' size='20' value='{{ form.data.size}}'>
+    </div>
+
+	<div class='listing-single-input'>
+	  	<div class='listing-input-label'>Description</div>
+	  	<input name='description' type='text' size='100' value='{{ form.data.name}}'>
+    </div>
+
+	<div class='listing-button'>
+		<input type='submit' value='List Item'>
+	</div>
+
+
+</form
+
+{% endblock %}

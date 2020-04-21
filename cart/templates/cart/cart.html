@@ -1,7 +1,8 @@
 {% extends 'product_listing/global_template.html'%}
 
-
+{% block content %}
 <div class='cart-container'>
+  <h1>ayo</h1>
 	{% if user.is_authenticated %}
 		{% comment %} {% for l in listing %}
 
@@ -10,3 +11,5 @@
 		<div class='no-cart'>To add items to cart, sign in.</div>
 	{% endif %}
 </div>
+
+{% endblock %}

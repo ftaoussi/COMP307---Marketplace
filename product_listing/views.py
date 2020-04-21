@@ -1,20 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from product_listing.models import Product, Image
+import product_listing.forms
 
 # Create your views here.
 def index(request):
-    #this will be the homepage of the entire site
-	return HttpResponse('Currently on the main page of the site: will display a list of all the items for sale.');
+    context = {'products': zip(Product.objects.all(), Image.objects.all())}
+    return render(request, 'product_listing/index.html', context)
 
 def listItem(request):
     context={}
     if request.method=='POST':
-        form = forms.ListingForm(request.POST)
+        form = product_listing.forms.ListingForm(request.POST)
         if form.is_valid():
             try:
                 product = Product(
                     name = form.cleaned_data['name'],
-                    seller = form.cleaned_data['seller'],
+                    seller = request.user,
                     price_initial = form.cleaned_data['price_initial'],
                     price_current = price_initial,
                     category = form.cleaned_data['category'],
@@ -26,13 +28,13 @@ def listItem(request):
                     size = form.cleaned_data['size']
                 )
                 product.save()
-                image = Image(img=form.cleaned_data['image'],product = product)
+                image = Image(img=form.cleaned_data['image'], product = product)
                 image.save()
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('product_listing/list/'))
             except: 
-                forms.add_error(None, 'Unable to list product')
+                form.add_error(None, 'Unable to list product')
         context['form'] = form
-    return render(request, 'list', context)
+    return render(request, 'product_listing/listItem.html', context)
 
 def viewItem(request, product_id): 
     context={}
@@ -40,5 +42,4 @@ def viewItem(request, product_id):
     img = Image.objects.filter(product=product)
     context['product'] = product
     context['image'] = img
-    return render(request,'product.html', context)
-
+    return render(request,'product_listing/product.html', context)

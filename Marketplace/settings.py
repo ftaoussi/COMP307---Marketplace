@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'chat',
     'product_listing',
     'channels',
+    'smart_selects'
 ]
 
 MIDDLEWARE = [

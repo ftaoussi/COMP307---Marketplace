@@ -22,14 +22,12 @@ from . import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
  
- 
-
 urlpatterns = [
 	path('account/', include('account.urls')),	
 	path('cart/', include('cart.urls')),
 	path('chat/', include('chat.urls')),
-    path('', index, name='index'),
-	path('product/', include('product_listing.urls')),
+   # path('', index, name='index'),
+	path('', include('product_listing.urls')),
    	path('admin/', admin.site.urls),
 ]
 
