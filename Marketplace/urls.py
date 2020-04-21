@@ -20,6 +20,7 @@ from product_listing.views import index
 
 from . import settings
 from django.contrib.staticfiles.urls import static
+#from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
  
 urlpatterns = [
