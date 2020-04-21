@@ -33,7 +33,7 @@ def loginUser(request):
             user = authenticate(request, username=form.cleaned_data['username'],password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('product_listing/index.html'))
+                return render(request, 'product_listing/index.html', context)
             else:
                 form.add_error(None,'Invalid username or password')
         else:
@@ -46,9 +46,9 @@ def index(request):
         context={}
         #assign context variables
         return render(request, 'account/index.html', context)
-    return redirect('/account/login.html') 
+    return redirect('account/login.html') 
 
 @login_required
 def do_logout(request):
     logout(request)
-    return render(request, 'product_listing/index.html')
+    return HttpResponseRedirect(reverse('product_listing:index'))

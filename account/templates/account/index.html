@@ -65,13 +65,13 @@
                             <!--For each Purchase, make one of these-->
                             <!--Added automatic history listing-->
                             {% for p in products %} <!--here 'products' is taken from product_listing.views, line 14-->
-                            <tr>
-                            <th scope="row">{{ p.id }}</th>
-				            <td>{{p.name}}</td>
-				            <td>{{p.price_current}}</td>
-				            <td>{{p.location}}</td>
-				            <td>{{p.time}}</td>
-                            </tr>
+                                <tr>
+                                    <th scope="row">{{ p.id }}</th>
+                                    <td>{{p.name}}</td>
+                                    <td>{{p.price_current}}</td>
+                                    <td>{{p.location}}</td>
+                                    <td>{{p.time}}</td>
+                                </tr>
                             {% endfor %}
                             
                         </tbody>
