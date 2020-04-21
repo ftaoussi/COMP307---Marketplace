@@ -63,8 +63,18 @@
                         </thead>
                         <tbody>
                             <!--For each Purchase, make one of these-->
+                            <!--Added automatic history listing-->
+                            {% for p in product %}
                             <tr>
                             <th scope="row">1</th>
+				            <td>{{p.name}}</td>
+				            <td>{{p.price_current}}</td>
+				            <td>{{p.location}}</td>
+				            <td>{{p.time}}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                            <th scope="row">2</th>
                             <td>T-Shirt</td>
                             <td>$10.00</td>
                             <td>Le Plateau</td>
@@ -72,14 +82,14 @@
                             </tr>
                             <!--End-->
                             <tr>
-                            <th scope="row">2</th>
+                            <th scope="row">3</th>
                             <td>T-Shirt</td>
                             <td>$40.00</td>
                             <td>Downtown</td>
                             <td>05/07/2009</td>
                             </tr>
                             <tr>
-                            <th scope="row">3</th>
+                            <th scope="row">4</th>
                             <td>Sweatpants</td>
                             <td>$30.00</td>
                             <td>Old Montreal</td>
