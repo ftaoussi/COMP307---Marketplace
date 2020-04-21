@@ -142,3 +142,4 @@ CHANNEL_LAYERS = {
 }
 
 LOGIN_URL = '/account/login/'
+SESSION_COOKIE_SAMESITE = None
