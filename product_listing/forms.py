@@ -15,3 +15,6 @@ class ListingForm(forms.Form):
     stock = forms.IntegerField()
     size = forms.CharField()
     image = forms.ImageField()
+
+class ImageForm(forms.Form):
+    img = forms.ImageField(upload_to="gallery/")
