@@ -64,7 +64,7 @@
                         <tbody>
                             <!--For each Purchase, make one of these-->
                             <!--Added automatic history listing-->
-                            {% for p in listItem %}
+                            {% for p in products %} <!--here 'products' is taken from product_listing.views, line 14-->
                             <tr>
                             <th scope="row">1</th>
 				            <td>{{p.name}}</td>
