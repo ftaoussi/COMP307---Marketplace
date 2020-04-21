@@ -161,3 +161,30 @@ table > * > * > * {
 .login-container {
 	padding: 1% 2%;
 }
+
+/*
+	Cart Style
+*/
+
+.cart-container {
+
+}
+
+.cart-item {
+	padding: .8rem 0rem;
+	border-top: 1px black solid;
+}
+
+.cart-item-left > * {
+	font-size: 1rem;
+	padding: .2rem 1rem;
+}
+
+.remove-button {
+	background-color: transparent;
+	border: none;
+	font-weight: bold;
+	font-size: .8rem;
+	letter-spacing: .12rem;
+	padding-left: .1rem;
+}

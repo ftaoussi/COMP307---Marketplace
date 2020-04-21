@@ -56,11 +56,11 @@
 </div>
 
 <div class='listings-container col-9'>
-	{% for product in products %}
+	{% for p in products %}
 		<div class='listing'>
-			<div class='listing-image'><img src="{{ product.1 }}"></div>
-			<div class='listing-name'>{{ product.0.name }}</div>
-			<div class='listing-info'>{{ product.0.price_current }} // {{ product.0.size }}</div>
+			<div class='listing-image'><img src="{{ p.1 }}"></div>
+			<div class='listing-name'>{{ p.0.name }}</div>
+			<div class='listing-info'>{{ p.0.price_current }} // {{ p.0.size }}</div>
 		</div>
 	{% endfor %}
 </div>

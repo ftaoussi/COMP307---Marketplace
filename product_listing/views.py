@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'product_listing/index.html', context)
 
 def listItem(request):
-    context={'products': Product.objects.all()} #added context so that it can be used in lising the history automatically
+    context={'products': Product.objects.all()} #added context so that it can be used in listing the history automatically
     if request.method=='POST':
         form = product_listing.forms.ListingForm(request.POST)
         if form.is_valid():
