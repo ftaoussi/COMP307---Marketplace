@@ -6,7 +6,6 @@
 
 	<form class='login-form form-group' method='post'>
 		{% csrf_token %}
-
 		<div class='form-row'>
 			<div class='username-input col-3'>
 				<div class='info-label form-group'>Username</div>
@@ -18,9 +17,10 @@
 			<div class='password-input col-3'>
 				<div class='info-label form-group'>Password</div>
 				<input name='password' class='form-control' type='password' value='{{ form.data.password}}'>
+				{{ form.non_field_errors }}
 			</div>
 		</div>
-
+		
 		<div class='form-row'>
 			<div class='login-button submit col-3 form-group'>
 				<input class='form-control' type='submit' value='Login'>
