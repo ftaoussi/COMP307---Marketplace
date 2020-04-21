@@ -8,6 +8,7 @@
     {% csrf_token %}
 
 	<div class='form-row'>
+		{{ form.non_field_errors }}
 		<div class='email-input col-3'>
 			<div class='info-label form-group'>Email</div>
 			<input name='email' class='form-control' type='text' value='{{ form.data.email}}'>
