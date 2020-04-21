@@ -2,27 +2,94 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <div class='account-container'>
-            <div class='user-info'>
-                <div class='user-username'>
-                    <div class='info-label'>Username</div>
-                    <div class='info-value'>{{user.username}}</div>
+        <div class='account-container container-fluid justify-content-center row'>
+            <div class='user-info row col-12 justify-content-left'>
+
+                <div class='row col-12'>
+                    <div class='user-info-header col-12'>Info</div>
                 </div>
-                <div class='user-email'>
-                    <div class='info-label'>Email</div>
-                    <div class='info-value'>{{user.email}}</div>
+
+                <div class='row col-12'>
+                    <div class='user-username col-3'>
+                        <div class='info-label'>Username</div>
+                        <div class='info-value'>{{user.username}}</div>
+                    </div>
+                    <div class='user-email col-3'>
+                        <div class='info-label'>Email</div>
+                        <div class='info-value'>{{user.email}}</div>
+                    </div>
+                </div>
+                
+                <div class='row col-12'>
+                    <div class='user-email col-12'>
+                        <div class='info-label'>Location</div>
+                        <div class='info-value'>{{user.location}}</div>
+                    </div>
                 </div>
             </div>
 
-            <div class='user-listings'>
-            {% comment %} {% for l in listings %}
+            <div class='user-listings row col-12 justify-content-left'>
 
-            {% endfor %} {% endcomment %}
+                <div class='row col-12'>
+                    <div class='user-info-header col-6'>Listings</div>
+                </div>
+
+                <!--do this for every listing-->
+                <div class='row col-12'>
+                    <div class='user-listing col-6'>
+                        <div class='info-value'>A Listing</div>
+                    </div>
+                </div>
+                <!--end-->
+
             </div>
 
-            <div class='user-orders'>
+            <div class='user-purchases row col-12'>
 
+                <div class='row col-12'>
+                    <div class='user-info-header col-6'>Purchases</div>
+                </div>
+
+                <div class='row col-12'>
+                    <table class="table col-12">
+                        <thead>
+                            <tr>
+                            <th scope="col-1">#</th>
+                            <th scope="col-4">Name</th>
+                            <th scope="col-1">Price</th>
+                            <th scope="col-4">Neighborhood</th>
+                            <th scope="col-2">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--For each Purchase, make one of these-->
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>T-Shirt</td>
+                            <td>$10.00</td>
+                            <td>Le Plateau</td>
+                            <td>01/02/2002</td>
+                            </tr>
+                            <!--End-->
+                            <tr>
+                            <th scope="row">2</th>
+                            <td>T-Shirt</td>
+                            <td>$40.00</td>
+                            <td>Downtown</td>
+                            <td>05/07/2009</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">3</th>
+                            <td>Sweatpants</td>
+                            <td>$30.00</td>
+                            <td>Old Montreal</td>
+                            <td>10/30/2020</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
 
         

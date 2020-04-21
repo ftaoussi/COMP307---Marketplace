@@ -3,64 +3,66 @@
 <h1>list shit</h1>
 
 {% block content %}
-  <div class='container'>
-	<div class='filters-container'>
-		<div class='single-filter'>
-			<div class='filter-header'>Categories</div>
-			<div class='filter-options'>
-				<div class='single-filter-option'>Clothing</div>
-				<div class='single-filter-option'>Footwear</div>
-				<div class='single-filter-option'>Wall Art</div>
-				<div class='single-filter-option'>Design</div>
-				<div class='single-filter-option'>Misc.</div>
-			</div>
-		</div>
-		<div class='single-filter'>
-			<div class='filter-header'>Neighborhoods</div>
-			<div class='filter-options'>
-				<div class='single-filter-option'>Le Plateau</div>
-				<div class='single-filter-option'>Downtown</div>
-				<div class='single-filter-option'>Old Montreal</div>
-				<div class='single-filter-option'>Mile-End</div>
-				<div class='single-filter-option'>Gay Village</div>
-				<div class='single-filter-option'>Griffintown</div>
-			</div>
-			<div class='more-filters-container'>
+  
+<div class='filters-container col-3'>
+	<div class='single-filter'>
+		<h5 class='filter-list-header'>Categories</h5>
+		<ul class='filter-options list-group'>
+			<li class='single-filter-option list-group-item'>Clothing</li>
+			<li class='single-filter-option list-group-item'>Footwear</li>
+			<li class='single-filter-option list-group-item'>Wall Art</li>
+			<li class='single-filter-option list-group-item'>Design</li>
+			<li class='single-filter-option list-group-item'>Misc.</li>
+		</ul>
+		
+	</div>
+	<div class='single-filter'>
+		<h5 class='filter-list-header'>Neighborhoods</h5>
+		<ul class='filter-options list-group'>
+			<li class='single-filter-option list-group-item'>Le Plateau</li>
+			<li class='single-filter-option list-group-item'>Downtown</li>
+			<li class='single-filter-option list-group-item'>Old Montreal</li>
+			<li class='single-filter-option list-group-item'>Mile-End</li>
+			<li class='single-filter-option list-group-item'>Gay Village</li>
+			<li class='single-filter-option list-group-item'>Griffintown</li>
+			<div class='more-filters-container list-group-item'>
 				<button class='more-filters-button'>+ More</button>
 			</div>
-		</div>
-		<div class='single-filter'>
-			<div class='filter-header'>Prices</div>
-			<div class='filter-options'>
-				<div class='single-filter-option'>0-9</div>
-				<div class='single-filter-option'>10-19</div>
-				<div class='single-filter-option'>20-29</div>
-				<div class='single-filter-option'>30-49</div>
-				<div class='single-filter-option'>50-99</div>
-				<div class='single-filter-option'>99+</div>
-			</div>
-		</div>
-		<div class='single-filter'>
-			<div class='filter-header'>Sizes</div>
-			<div class='filter-options footwear'>
-				<div class='single-filter-option'>Le Plateau</div>
-				<div class='single-filter-option'>Downtown</div>
-				<div class='single-filter-option'>Old Montreal</div>
-				<div class='single-filter-option'>Mile-End</div>
-				<div class='single-filter-option'>Gay Village</div>
-				<div class='single-filter-option'>Griffintown</div>
-			</div>
-		</div>
+		</ul>
+		
 	</div>
+	<div class='single-filter'>
+		<h5 class='filter-list-header'>Prices</h5>
+		<ul class='filter-options list-group'>
+			<li class='single-filter-option list-group-item'>0-9</li>
+			<li class='single-filter-option list-group-item'>10-19</li>
+			<li class='single-filter-option list-group-item'>20-29</li>
+			<li class='single-filter-option list-group-item'>30-49</li>
+			<li class='single-filter-option list-group-item'>50-99</li>
+			<li class='single-filter-option list-group-item'>99+</li>
+		</ul>
+	</div>
+	<div class='single-filter'>
+		<h5 class='filter-list-header'>Sizes</h5>
+		<ul class='filter-options tops list-group' hidden>
+			<li class='single-filter-option list-group-item'>S</li>
+			<li class='single-filter-option list-group-item'>M</li>
+			<li class='single-filter-option list-group-item'>L</li>
+			<li class='single-filter-option list-group-item'>XL</li>
+			<li class='single-filter-option list-group-item'>XL+</li>
+		</ul>
+		<h8 class='no-category-selected-error list-group-item'>Select a Category</h8>
+	</div>
+</div>
 
-	<div class='listings-container'>
-		{% for product in products %}
-			<div class='listing'>
-				<div class='listing-image'><img src="{{ product.1 }}"></div>
-				<div class='listing-name'>{{ product.0.name }}</div>
-				<div class='listing-info'>{{ product.0.price_current }} // {{ product.0.size }}</div>
-			</div>
-		{% endfor %}
-	</div>
-  </div>
+<div class='listings-container col-9'>
+	{% for product in products %}
+		<div class='listing'>
+			<div class='listing-image'><img src="{{ product.1 }}"></div>
+			<div class='listing-name'>{{ product.0.name }}</div>
+			<div class='listing-info'>{{ product.0.price_current }} // {{ product.0.size }}</div>
+		</div>
+	{% endfor %}
+</div>
+  
 {% endblock %}

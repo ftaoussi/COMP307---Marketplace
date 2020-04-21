@@ -2,22 +2,31 @@
 
 {% block content %}
 
-<div class='login-container'>
-  <form class='login-form' method='post'>
-    {% csrf_token %}
+<div class='login-container container-fluid justify-content-left'>
 
-	<div class='username-input'>
-	  <div class='input-label'>Username</div>
-	  <input name='username' type='text' size='20' value='{{ form.data.username}}'>
-	</div>
-	<div class='password-input'>
-	  <div class='input-label'>Password</div>
-	  <input name='password' type='password' size='20' value='{{ form.data.password}}'>
-	</div>
-	<div class='login-button'>
-	  <input type='submit' value='Login'>
-	</div>
-  </form>
+		<form class='login-form form-group' method='post'>
+			{% csrf_token %}
+			<div class='form-row'>
+				<div class='username-input'>
+					<div class='info-label form-group'>Username</div>
+					<input name='username' class='form-control' type='text' value='{{ form.data.username}}'>
+				</div>
+			</div>
+
+			<div class='form-row'>
+				<div class='password-input form-group'>
+					<div class='info-label'>Password</div>
+					<input name='password' class='form-control' type='password' value='{{ form.data.password}}'>
+				</div>
+			</div>
+
+			<div class='form-row'>
+				<div class='login-button submit'>
+					<input class='form-control' type='submit' value='Login'>
+				</div>
+			</div>
+		</form>
+	
 </div>
 
 {% endblock %}

@@ -48,4 +48,4 @@ def index(request):
 @login_required
 def do_logout(request):
     logout(request)
-    return render(request, 'account/index.html')
+    return render(request, 'product_listing/index.html')
