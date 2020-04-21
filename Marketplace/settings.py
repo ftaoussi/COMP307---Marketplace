@@ -43,8 +43,7 @@ INSTALLED_APPS = [
     'cart',
     'chat',
     'product_listing',
-    'channels',
-    'smart_selects'
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -76,7 +75,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Marketplace.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

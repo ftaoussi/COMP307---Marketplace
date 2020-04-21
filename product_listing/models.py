@@ -23,7 +23,11 @@ class Product(models.Model):
     price_current = models.IntegerField()
     price_initial = models.IntegerField(blank=False)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    subcategory = models.ForeignKey(Subcategory, on_delete=models.SET_NULL, null=True)
+    subcategory = models.ForeignKey(
+        Subcategory,
+        on_delete=SET_NULL,
+        null=True
+        )
     location = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True)
     time = models.TextField()
     description = models.TextField()
@@ -42,11 +46,11 @@ class Product(models.Model):
 #    price = models.IntegerField()
 #    shipping_to = models.TextField()
 
-    def __str__(self):
-        str1=seller.__str__()
-        str2=product.__str__()
-        str3=buyer.__str__()
-        return (str1 + ", " + str2 + ", " + str3)
+    #def __str__(self):
+     #   str1=seller.__str__()
+    #    str2=product.__str__()
+   #     str3=buyer.__str__()
+  #      return (str1 + ", " + str2 + ", " + str3)
     
 class Image(models.Model): 
     img = models.ImageField(upload_to="gallery")
