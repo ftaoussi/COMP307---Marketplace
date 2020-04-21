@@ -4,28 +4,29 @@
 
 <div class='login-container container-fluid justify-content-left'>
 
-		<form class='login-form form-group' method='post'>
-			{% csrf_token %}
-			<div class='form-row'>
-				<div class='username-input'>
-					<div class='info-label form-group'>Username</div>
-					<input name='username' class='form-control' type='text' value='{{ form.data.username}}'>
-				</div>
-			</div>
+	<form class='login-form form-group' method='post'>
+		{% csrf_token %}
 
-			<div class='form-row'>
-				<div class='password-input form-group'>
-					<div class='info-label'>Password</div>
-					<input name='password' class='form-control' type='password' value='{{ form.data.password}}'>
-				</div>
+		<div class='form-row'>
+			<div class='username-input col-3'>
+				<div class='info-label form-group'>Username</div>
+				<input name='username' class='form-control' type='text' value='{{ form.data.username}}'>
 			</div>
+		</div>
 
-			<div class='form-row'>
-				<div class='login-button submit'>
-					<input class='form-control' type='submit' value='Login'>
-				</div>
+		<div class='form-row'>
+			<div class='password-input col-3'>
+				<div class='info-label form-group'>Password</div>
+				<input name='password' class='form-control' type='password' value='{{ form.data.password}}'>
 			</div>
-		</form>
+		</div>
+
+		<div class='form-row'>
+			<div class='login-button submit col-3 form-group'>
+				<input class='form-control' type='submit' value='Login'>
+			</div>
+		</div>
+	</form>
 	
 </div>
 

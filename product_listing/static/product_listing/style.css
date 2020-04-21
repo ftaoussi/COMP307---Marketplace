@@ -110,7 +110,8 @@ h5 {
 }
 
 .submit > .form-control {
-	margin-top: 1rem;
+	letter-spacing: .12rem;
+	margin-top: 1.5rem;
 }
 
 /*
@@ -122,38 +123,32 @@ h5 {
 }
 
 .account-container > * {
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
 }
 
 .user-info-header {
 	font-weight: bold;
-}
-
-.user-info .col {
-	margin: .4rem 0rem;
-}
-
-.user-info > .row {
 	margin-bottom: .8rem;
 }
 
-.profile-header {
-	font-size: 1.2rem;
-	font-weight: bold;
+.user-info .col {
+	
 }
 
 .info-value {
 	text-decoration: underline;
 }
 
-.user-listings > .row {
-	margin-bottom: .8rem;
+.user-purchases > * > .user-info-header {
+	margin-bottom: .2rem;
 }
 
 table {
 	margin-top: 1rem;
 	margin-left: 1rem;
 }
+
+
 
 table > * > * > * {
 	padding: .9rem;

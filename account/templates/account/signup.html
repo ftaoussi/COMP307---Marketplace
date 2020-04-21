@@ -1,36 +1,46 @@
-
 {% extends 'product_listing/global_template.html' %}
 
 {% block content %}
 
-<div class='signup-container'>
-  <form class='signup-form' method='post'>
+<div class='signup-container container-fluid justify-content-left'>
+
+  <form class='signup-form form-group' method='post'>
     {% csrf_token %}
 
-    <div class='email-input'>
-	  <div class='input-label'>Email</div>
-	  <input name='email' type='text' size='20' value='{{ form.data.email}}'>
-      {{ form.email.errors }}
-    </div>
+	<div class='form-row'>
+		<div class='email-input col-3'>
+			<div class='info-label form-group'>Email</div>
+			<input name='email' class='form-control' type='text' value='{{ form.data.email}}'>
+			{{ form.email.errors }}
+		</div>
+	</div>
 
-	<div class='username-input'>
-	  <div class='input-label'>Username</div>
-	  <input name='username' type='text' size='20' value='{{ form.data.username}}'>
-      {{ form.username.errors }}
-    </div>
+	<div class='form-row'>
+		<div class='username-input col-3'>
+			<div class='info-label form-group'>Username</div>
+			<input name='username' class='form-control' type='text' value='{{ form.data.username}}'>
+			{{ form.username.errors }}
+		</div>
+	</div>
 
-	<div class='password-input'>
-	  <div class='input-label'>Password</div>
-	  <input name='password' type='password' size='20' value='{{ form.data.password}}'>
-      {{ form.password.errors }}
-    </div>
-    <div class='confirm-password-input'>
-	  <div class='input-label'>Confirm Password</div>
-	  <input name='confirm_password' type='password' size='20' value='{{ form.data.confirm_password}}'>
-	  {{ form.confirm_password.errors }}
-    </div>
-	<div class='signup-button'>
-	  <input type='submit' value='Signup'>
+	<div class='form-row'>
+		<div class='password-input col-3'>
+			<div class='info-label form-group'>Password</div>
+			<input name='password' class='form-control' type='password' value='{{ form.data.password}}'>
+			{{ form.password.errors }}
+		</div>
+	</div>
+
+	<div class='form-row'>
+		<div class='confirm-password-input col-3'>
+			<div class='info-label form-group'>Confirm Password</div>
+			<input name='confirm_password' class='form-control' type='password' value="{{ form.data.confirm_password}}">
+			{{ form.confirm_password.errors }}
+		</div>
+	</div>
+
+	<div class='signup-button col-3 submit form-group'>
+	  <input class='form-control' type='submit' value='Sign Up'>
 	</div>
   </form>
 </div>

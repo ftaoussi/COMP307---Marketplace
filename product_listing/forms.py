@@ -1,5 +1,5 @@
 from django import forms
-from product_listing.models import Category, Neighborhood
+from product_listing.models import Category, Neighborhood, Subcategory
 #from smartselects.db_fields import ChainedForeignKey
 
 class ListingForm(forms.Form):

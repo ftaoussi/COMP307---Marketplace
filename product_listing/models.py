@@ -25,7 +25,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     subcategory = models.ForeignKey(
         Subcategory,
-        on_delete=SET_NULL,
+        on_delete=models.SET_NULL,
         null=True
         )
     location = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True)
