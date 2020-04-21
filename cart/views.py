@@ -17,9 +17,9 @@ def index(request):
 			cart = Cart(user=request.user)
 			cart.save()
 			context['cart'] = cart
-		return reverse(request, 'cart.html', context)
+		return render(request, 'cart.html', context)
 	else:
-		return reverse(request, 'login.html', context)
+		return redirect('/account/login')
 
 
 #def viewCart(request): 
