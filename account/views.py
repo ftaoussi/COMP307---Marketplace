@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 import account.forms
+#from product_listing import templates
 
 def signup(request): 
     context = {}
@@ -32,9 +33,11 @@ def loginUser(request):
             user = authenticate(request, username=form.cleaned_data['username'],password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('product_listing:index'))
+                return HttpResponseRedirect(reverse('product_listing/index.html'))
             else:
-                form.add_error('password','Invalid username or password')
+                form.add_error(None,'Invalid username or password')
+        else:
+            form.add_error(None,'Invalid input')
         context['form'] = form
     return render(request, 'account/login.html', context)
 

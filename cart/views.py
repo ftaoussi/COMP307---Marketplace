@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, reverse
 from cart.models import Cart, Item
 import datetime
-#from account.templates import login
 
 # Create your views here.
 def index(request):
