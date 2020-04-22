@@ -69,6 +69,10 @@ h2 {
 	Homepage Style
 */
 
+.listings-container {
+	padding: 3% 0%;
+}
+
 .filters-container {
 
 }
@@ -93,6 +97,14 @@ h5 {
 .more-filters-button {
 	background-color: transparent;
 	border: none;
+}
+
+.listing-name, .listing-info {
+	margin: .4rem 0rem;
+}
+
+.listing-image {
+	margin: .8rem 0rem;
 }
 
 

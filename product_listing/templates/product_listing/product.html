@@ -1,0 +1,20 @@
+{% extends 'product_listing/global_template.html' %}
+{% block content %}
+
+<div class='product-container container-fluid justify-content-left'>
+	<div class='product-image col-6'>
+
+	</div>
+
+	<div class='product-info col-6'>
+		<div class='product-name row'>{{ product.name }}</div>
+		<div class='product-price-size row'>{{ product.price }} // {{ product.size }}</div>
+		<div class='product-stock row'>{{ product.stock }}</div>
+		<div class='product-location row'>{{ product.location }}</div>
+	</div>
+
+	<div class='add-to-cart-container col-6'>
+		<button class='add-to-cart' value='Add to Cart'></button>
+	</div>
+</div>
+{% endblock %}
