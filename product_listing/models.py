@@ -29,7 +29,7 @@ class Product(models.Model):
         null=True
         )
     location = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True)
-    time = models.TextField()
+    time = models.DateTimeField()
     description = models.TextField()
     stock = models.IntegerField()
     size = models.CharField(max_length=10)
