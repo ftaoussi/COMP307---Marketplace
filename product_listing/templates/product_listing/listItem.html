@@ -1,71 +1,11 @@
 {% extends 'product_listing/global_template.html' %}
-
 {% block content %}
 <div class='form-container container-fluid justify-content-left'>
-	<form class='listing-form col-6 justify-content-md-center' method='post' enctype='multipart/form-data'>
+	<form action="/list/" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
-		<div class='form-row'>
-			<div class='listing-single-input form-group col'>
-				<div class='info-label'>Name</div>
-				<input name='name' class='form-control' type='text' size='20' value='{{ form.data.name}}'>
-			</div>
-
-			<div class='listing-single-input form-group col'>
-				<div class='info-label'>Price</div>
-				<input name='price_initial' class='form-control' type='number' size='20' value='{{ form.data.price}}'>
-			</div>
-		</div>
-
-		<div class='form-row'>
-			<div class='listing-single-input form-group col'>
-				<div class='info-label'>Category</div>
-				<select name="category" class='form-control'>
-					<option value="clothing">Clothing</option>
-					<option value="footwear">Footwear</option>
-					<option value="wallart">Wall Art</option>
-					<option value="design">Design</option>
-					<option value="misc">Misc.</option>
-				</select>
-			</div>
-
-			<div class='listing-single-input form-group col'>
-				<div class='info-label'>Size</div>
-				<input name='size' class='form-control' type='text' size='20' value='{{ form.data.size}}'>
-			</div>
-		</div>
-
-		<div class='form-row'>
-			<div class='listing-single-input form-group col'>
-				<div class='info-label'>Neighborhood</div>
-				<select name="neighborhood" class='form-control'>
-					<option value='{{ form.data.location }}'>Le Plateau</option>
-					<option value='{{ form.data.location }}'>Downtown</option>
-					<option value='{{ form.data.location }}'>Old Montreal</option>
-					<option value='{{ form.data.location }}'>Mile-End</option>
-					<option value='{{ form.data.location }}'>Griffintown</option>
-				</select>
-			</div>
-
-			<div class='listing-single-input form-group col'>
-				<div class='info-label'>Stock</div>
-				<input name='size' class='form-control' type='number' size='20' value='{{ form.data.stock }}'>
-			</div>
-		</div>
-
-		<div class='form-row'>
-			<div class='listing-single-input form-group col'>
-				<div class='info-label'>Description</div>
-				<input name='description' class='form-control' type='text' size='100' value='{{ form.data.description}}'>
-			</div>
-		</div>
-
-		<div class='form-row'>
-			<div class='listing-button submit form-group col-4'>
-				<input  class='form-control' type='submit' value='List Item'>
-			</div>
-		</div>
-
-
+		{{ form.non_field_errors }}
+		<table> {{ form.as_table }}  </table>
+		<input type="submit" value="Submit">
 	</form>
 </div>
 {% endblock %}
