@@ -5,6 +5,7 @@ class Category(models.Model):
     name = models.TextField(unique=True)
     def __str__ (self):
         return self.name
+        
 class Subcategory(models.Model): 
     name = models.TextField(unique=True)
     parent_category = models.ForeignKey(Category, on_delete=models.CASCADE)
