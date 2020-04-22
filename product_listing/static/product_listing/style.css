@@ -233,6 +233,10 @@ table > * > * > * {
 	padding-left: .1rem;
 }
 
+.checkout-success-container {
+	padding: 1rem 2rem;
+}
+
 /*
 	Chat Style
 */

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, reverse
 from cart.models import Cart, Item
+import cart.forms
 import datetime
 
 # Create your views here.
@@ -11,13 +12,13 @@ def index(request):
 	if request.user.is_authenticated:
 		carts = Cart.objects.filter(user=request.user)
 		if carts is not None: 
-			cart = carts.first()
-			context['cart'] = cart
-			context['items'] = Item.objects.filter(cart=cart)
+			this_cart = carts.first()
+			context['cart'] = this_cart
+			context['items'] = Item.objects.filter(cart=this_cart)
 		else:
-			cart = Cart(user=request.user)
-			cart.save()
-			context['cart'] = cart
+			this_cart = Cart(user=request.user)
+			this_cart.save()
+			context['cart'] = this_cart
 		for item in context['items']:
 			total += item.unit_price
 		context['total'] = total
@@ -39,8 +40,8 @@ def modifyCart(request, action, product_id, quantity):
 	if request.user.is_authenticated:
 		userCart = Cart.objects.filter(user=request.user)
 		if userCart is None:
-			cart=Cart(user=request.user)
-			cart.save()
+			this_cart=Cart(user=request.user)
+			this_cart.save()
 			userCart = Cart.objects.filter(user=request.user)
 		if (action=='add'):
 			add_to_cart(request, product_id, option)
@@ -84,8 +85,8 @@ def add_to_cart(request, product_id, quantity):
 
 
 def remove_from_cart(request, product_id, quantity):
-	cart = Cart.objects.get(user=request.user)
-	items = Item.objects.filter(product=product_id, cart=cart)
+	this_cart = Cart.objects.get(user=request.user)
+	items = Item.objects.filter(product=product_id, cart=this_cart)
 	if items is not None:
 		item = items.first()
 		if (item.quantity > quantity):
@@ -94,23 +95,27 @@ def remove_from_cart(request, product_id, quantity):
 			item.delete()
 
 def clear_cart(request):
-	cart = Cart.objects.get(user=request.user)
-	cart.delete()
+	this_cart = Cart.objects.get(user=request.user)
+	this_cart.delete()
 
 
 def checkout(request):
 	context={}
 	if request.user.is_authenticated == False:
 		return reverse(request, 'account/login.html',context)
-	cart = Cart.objects.get(user=request.user)
+	try:
+		this_cart = Cart.objects.get(user=request.user)
+	except Cart.DoesNotExist:
+		this_cart = Cart(user=request.user)
+		this_cart.save()
 	user = request.user
 	baskets = []
-	if method=='POST':
+	if request.method=='POST':
 		form = forms.ShippingForm(request.POST)
 		if form.is_valid():
 			try:
 				shipaddr = form.cleaned_data['street_address']+", "+form.cleaned_data['postcode']
-				for item in cart.item.set_all():
+				for item in this_cart.item.set_all():
 					total = 0
 					for basket in baskets:
 						if (basket.seller != item.seller):
@@ -143,7 +148,10 @@ def checkout(request):
 			except:
 				return HttpResponse("Please try again")
 	else:
-		context['form'] = forms.ShippingForm
-		return reverse(request, 'cart/checkout.html', context)
-	return reverse(request, 'cart/checkoutsuccess.html', context)
+		context['form'] = cart.forms.ShippingForm
+		return render(request, 'cart/checkout.html', context)
+	return HttpResponseRedirect(request, 'cart/checkoutsuccess.html', context)
 
+
+def checkoutsuccess(request):
+	return render(request, 'cart/checkoutsuccess.html')

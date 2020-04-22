@@ -36,7 +36,9 @@
 		
 		<div class='cart-price'>Total: {{total}}</div>
 		
-
+		<div class='checkout-button-container'>
+			<a href="{% url 'cart:checkout' %}">Checkout</a>
+		</div>	
 		{% else %}
 			<div class='no-cart'>To add items to cart, sign in.</div>
 		{% endif %}
