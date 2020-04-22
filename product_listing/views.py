@@ -49,5 +49,5 @@ def viewItem(request, product_id):
     context={}
     product=Product.objects.get(id=product_id)
     img = Image.objects.get(product=product)
-    context = {'product': product, 'image': img}
+    context = {'product': product, 'image': img, 'pid': product_id}
     return render(request,'product_listing/product.html', context)
