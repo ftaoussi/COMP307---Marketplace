@@ -22,11 +22,16 @@ html::-webkit-scrollbar {
 }
 
 .topline .col {
-	padding: 0;
+	
 }
 
 .right > * {
-	text-align: right;
+	padding: .2rem .8rem;
+}
+
+.right > * > * {
+	text-align: center;
+	font-size: .8rem;
 }
 
 a {
@@ -107,6 +112,10 @@ h5 {
 .info-label {
 	font-size: .8rem;
 	padding: .3rem 0rem;
+}
+
+input .image {
+	background-color: transparent;
 }
 
 .submit > .form-control {

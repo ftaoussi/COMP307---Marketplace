@@ -28,7 +28,7 @@ def listItem(request):
                     size = form.cleaned_data['size']
                 )
                 product.save()
-                image = Image(img=form.cleaned_data['image'], product = product)
+                image = Image(img=form.cleaned_data['image'], product=product)
                 image.save()
                 return HttpResponseRedirect(reverse('product_listing/list/'))
             except: 
