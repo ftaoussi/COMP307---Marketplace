@@ -3,31 +3,33 @@
 <h1>list shit</h1>
 
 {% block content %}
+
+{% load category_tags %}
+{% load subcategory_tags %}
+{% load neighborhood_tags %}
+{% load product_tags %}
+
+
 <div class='index-container row container-fluid justify-content-left'>
 	<div class='filters-container col-3'>
 		<div class='single-filter'>
 			<h5 class='filter-list-header'>Categories</h5>
 			<ul class='filter-options list-group'>
-				<li class='single-filter-option list-group-item'>Clothing</li>
-				<li class='single-filter-option list-group-item'>Footwear</li>
-				<li class='single-filter-option list-group-item'>Wall Art</li>
-				<li class='single-filter-option list-group-item'>Design</li>
-				<li class='single-filter-option list-group-item'>Misc.</li>
+				{% show_categories %}
 			</ul>
-			
 		</div>
+
+		<div class='single-filter'>
+			<h5 class='filter-list-header'>Subcategories</h5>
+			<ul class='filter-options list-group'>
+				{% show_subcategories %}
+			</ul>
+		</div>
+
 		<div class='single-filter'>
 			<h5 class='filter-list-header'>Neighborhoods</h5>
 			<ul class='filter-options list-group'>
-				<li class='single-filter-option list-group-item'>Le Plateau</li>
-				<li class='single-filter-option list-group-item'>Downtown</li>
-				<li class='single-filter-option list-group-item'>Old Montreal</li>
-				<li class='single-filter-option list-group-item'>Mile-End</li>
-				<li class='single-filter-option list-group-item'>Gay Village</li>
-				<li class='single-filter-option list-group-item'>Griffintown</li>
-				<div class='more-filters-container list-group-item'>
-					<button class='more-filters-button'>+ More</button>
-				</div>
+				{% show_neighborhoods %}
 			</ul>
 			
 		</div>
@@ -56,21 +58,22 @@
 	</div>
 
 	<div class='listings-container row col-8 justify-content-left'>
-		{% for p in products %}
+		{% show_products %}
+		{% comment %} {% for p in products %}
 			
 			<div class='listing col-6 justify-content-center'>
 				
-				<div class='listing-image row col-12'><img src="{{ p.1 }}"></div>
-				<div class='listing-name row col-12'>{{ p.0.name }}</div>
-				<div class='listing-info row col-12'>Price - {{ p.0.price_current }} // Size - {{ p.0.size }}</div>
-				<div class='listing-seller row col-12'>{{ p.0.seller }}</div>
-				<div class='listing-message row col-12'>
-					<input id="room-name-submit" type="button" onclick='location.href="chat/{{user.id}}"' value="Chat">
+				<div class='listing-image row col-12 justify-content-center'><img src="{{ p.1 }}"></div>
+				<div class='listing-name row col-12 justify-content-center'>{{ p.0.name }}</div>
+				<div class='listing-info row col-12 justify-content-center'>Price: {{ p.0.price_current }}  /  Size: {{ p.0.size }}</div>
+				<div class='listing-seller row col-12 justify-content-center'>Seller: {{ p.0.seller }}</div>
+				<div class='listing-message row col-12 justify-content-center'>
+					<input id="room-name-submit" type="button" onclick='location.href="chat/{{user.id}}"' value="Message Seller">
 				</div>
 				
 			</div>
 		
-		{% endfor %}
+		{% endfor %} {% endcomment %}
 	</div>
 	{% comment %} <div class='single-filter'>
 		<h5 class='filter-list-header'>Prices</h5>
