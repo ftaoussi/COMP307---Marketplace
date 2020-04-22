@@ -209,6 +209,11 @@ table > * > * > * {
 
 }
 
+.cart-price {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
 .cart-item {
 	padding: .8rem 0rem;
 	border-top: 1px black solid;

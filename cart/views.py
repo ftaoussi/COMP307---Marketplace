@@ -7,6 +7,7 @@ import datetime
 # Create your views here.
 def index(request):
 	context={}
+	total = 0
 	if request.user.is_authenticated:
 		carts = Cart.objects.filter(user=request.user)
 		if carts is not None: 
@@ -17,6 +18,9 @@ def index(request):
 			cart = Cart(user=request.user)
 			cart.save()
 			context['cart'] = cart
+		for item in context['items']:
+			total += item.unit_price
+		context['total'] = total
 		return render(request, 'cart/cart.html', context)
 	else:
 		return redirect('/account/login')

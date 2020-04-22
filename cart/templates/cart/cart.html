@@ -1,33 +1,27 @@
 {% extends 'product_listing/global_template.html'%}
 
 {% block content %}
+
 <div class='cart-container container-fluid justify-content-left'>
-	<div class='cart-item-container col'>
-		<h4 class='cart-header row col'>Cart</h4>
-
+	<div class='cart-item-container col-12'>
+		<div class='cart-header-container row align-content-center'>
+			<h4 class='cart-header col-6'>Cart</h4>
+			
+		</div>
 		{% if user.is_authenticated %}
-				<div class='cart-item col-7 row'>
-					<div class='cart-item-left col-12'>
-						<div class='cart-item-name col-7 row'>Cool T-Shirt</div>
-						<div class='cart-item-location col-7 row'>Downtown</div>
-						<div class='cart-item-price col-7 row'>$10.00</div>
-						<div class='cart-item-size col-7 row'>L</div>
-						<div class='cart-item-date col-7 row'>01/02/2019</div>
-						<div class='cart-item-remove col-7 row'><button class='remove-button'>Remove</button></div>
+				{% for i in items %}
+					<div class='cart-item col-7 row'>
+						<div class='cart-item-left col-12'>
+							<div class='cart-item-name col-7 row'>{{i.product.name}}</div>
+							<div class='cart-item-location col-7 row'>{{i.product.location}}</div>
+							<div class='cart-item-price col-7 row'>{{i.product.price_current}}</div>
+							<div class='cart-item-size col-7 row'>{{i.product.size}}</div>
+							<div class='cart-item-date col-7 row'>{{i.product.time}}</div>
+							<div class='cart-item-remove col-7 row'><button class='remove-button'>Remove</button></div>
+						</div>
 					</div>
-				</div>
 
-				<div class='cart-item col-7 row'>
-					<div class='cart-item-left col-12'>
-						<div class='cart-item-name col-7 row'>Cool T-Shirt</div>
-						<div class='cart-item-location col-7 row'>Downtown</div>
-						<div class='cart-item-price col-7 row'>$10.00</div>
-						<div class='cart-item-size col-7 row'>L</div>
-						<div class='cart-item-date col-7 row'>01/02/2019</div>
-						<div class='cart-item-remove col-7 row'><button class='remove-button'>Remove</button></div>
-					</div>
-				</div>
-
+				{% endfor %}
 
 					<!-- Commenting out image thumbnail for now. NON-ESSENTIAL-->
 					{% comment %} <div class='cart-item-right col-5'>
@@ -35,14 +29,21 @@
 							<img class='cart-item-image' src={{ p.image }}>
 						</div>
 					</div> {% endcomment %}
-				
+
+
+		
+		
+		
+		<div class='cart-price'>Total: {{total}}</div>
 		
 
 		{% else %}
 			<div class='no-cart'>To add items to cart, sign in.</div>
-
 		{% endif %}
+		
+		
 	</div>
+	
 </div>
 
 {% endblock %}
