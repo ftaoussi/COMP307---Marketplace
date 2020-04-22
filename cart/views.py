@@ -30,7 +30,7 @@ def index(request):
 #	context['items'] = Item.objects.get(cart=cart)
 #	return render(request, "cart.html", context)
 
-def modifyCart(request, action, product_id, option):
+def modifyCart(request, action, product_id, quantity):
 	context = {}
 	if request.user.is_authenticated:
 		userCart = Cart.objects.filter(user=request.user)
