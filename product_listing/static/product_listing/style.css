@@ -236,3 +236,13 @@ table > * > * > * {
 	background-color: white;
 	border: none;
 }
+
+#chat-log, #chat-message-input{
+	padding: .5rem;
+	margin: 1rem 0rem;
+}
+
+#chat-message-submit {
+	margin: 1rem 0rem;
+}
+
