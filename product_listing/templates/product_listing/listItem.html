@@ -1,9 +1,13 @@
 {% extends 'product_listing/global_template.html' %}
-
 {% block content %}
 <div class='form-container container-fluid justify-content-left'>
-	<form class='listing-form col-6 justify-content-md-center' method='post' enctype='multipart/form-data'>
+	<form action="/list/" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
+<<<<<<< HEAD
+		{{ form.non_field_errors }}
+		<table> {{ form.as_table }}  </table>
+		<input type="submit" value="Submit">
+=======
 		<div class='form-row'>
 			<div class='listing-single-input form-group col'>
 				<div class='info-label'>Name</div>
@@ -87,7 +91,6 @@
 			</div>
 		</div>
 
-		<input name='image' class='image' src='https://image.shutterstock.com/image-photo/white-transparent-leaf-on-mirror-260nw-1029171697.jpg' type='image' value='{{ form.data.image }}'>
 	</form>
 	{{ form.non_field_errors }}
 	{{form.data.errors}}
