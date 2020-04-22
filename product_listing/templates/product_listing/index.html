@@ -55,19 +55,59 @@
 		</div>
 	</div>
 
-	<div class='listings-container row col-7 justify-content-left'>
+	<div class='listings-container row col-8 justify-content-left'>
 		{% for p in products %}
 			
-			<div class='listing row col-6 justify-content-center'>
-				<a href="{{ p.0.id }}">
-				<div class='listing-image row justify-content-center'><img src="{{ p.1 }}"></div>
-				<div class='listing-name row justify-content-center'>{{ p.0.name }}</div>
-				<div class='listing-info row justify-content-center'>{{ p.0.price_current }} // {{ p.0.size }}</div>
-				</a>
+			<div class='listing col-6 justify-content-center'>
+				
+				<div class='listing-image row col-12'><img src="{{ p.1 }}"></div>
+				<div class='listing-name row col-12'>{{ p.0.name }}</div>
+				<div class='listing-info row col-12'>Price - {{ p.0.price_current }} // Size - {{ p.0.size }}</div>
+				<div class='listing-seller row col-12'>{{ p.0.seller }}</div>
+				<div class='listing-message row col-12'>
+					<input id="room-name-submit" type="button" onclick='location.href="chat/{{user.id}}"' value="Chat">
+				</div>
+				
 			</div>
 		
 		{% endfor %}
 	</div>
+	{% comment %} <div class='single-filter'>
+		<h5 class='filter-list-header'>Prices</h5>
+		<ul class='filter-options list-group'>
+			<li class='single-filter-option list-group-item'>0-9</li>
+			<li class='single-filter-option list-group-item'>10-19</li>
+			<li class='single-filter-option list-group-item'>20-29</li>
+			<li class='single-filter-option list-group-item'>30-49</li>
+			<li class='single-filter-option list-group-item'>50-99</li>
+			<li class='single-filter-option list-group-item'>99+</li>
+		</ul>
+	</div>
+	<div class='single-filter'>
+		<h5 class='filter-list-header'>Sizes</h5>
+		<ul class='filter-options tops list-group' hidden>
+			<li class='single-filter-option list-group-item'>S</li>
+			<li class='single-filter-option list-group-item'>M</li>
+			<li class='single-filter-option list-group-item'>L</li>
+			<li class='single-filter-option list-group-item'>XL</li>
+			<li class='single-filter-option list-group-item'>XL+</li>
+		</ul>
+		<h8 class='no-category-selected-error list-group-item'>Select a Category</h8>
+	</div>
+</div>
+
+<div class='listings-container col-9'>
+	{% for p in products %}
+<div class='listings-container col-9'>
+	<div class='listing'>
+		<div class='listing-image'><img src="{{ p.0 }}"></div>
+		<div class='listing-name'>{{ p.0.name }}</div>
+		<div class='listing-info'>Price:{{ p.0.price_current }} // Size:{{ p.0.size }}</div>
+		<div class='listing-seller'>Seller:{{ p.0.seller }} </div>
+		Click button to contact seller<br>
+    		<input id="room-name-submit" type="button" onclick='location.href="chat/{{user.id}}"' value="Chat">
+	</div>
+{% endfor %} {% endcomment %}
 </div>
   
 {% endblock %}

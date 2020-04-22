@@ -33,7 +33,7 @@ def loginUser(request):
             user = authenticate(request, username=form.cleaned_data['username'],password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                return render(request, 'product_listing/index.html', context)
+                return HttpResponseRedirect(reverse('product_listing:index'))
             else:
                 form.add_error(None,'Invalid username or password')
         else:

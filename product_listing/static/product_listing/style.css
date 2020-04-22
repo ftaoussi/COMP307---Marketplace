@@ -99,12 +99,17 @@ h5 {
 	border: none;
 }
 
-.listing-name, .listing-info {
-	margin: .4rem 0rem;
+.listing-name, .listing-info, .listing-seller, .listing-message {
+	margin: 0rem 0rem;
+	height: 2rem;
+}
+
+.listing-info {
+	margin: -rem;
 }
 
 .listing-image {
-	margin: .8rem 0rem;
+	margin: 0rem 0rem;
 }
 
 

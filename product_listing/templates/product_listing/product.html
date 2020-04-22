@@ -2,15 +2,17 @@
 {% block content %}
 
 <div class='product-container container-fluid justify-content-left'>
-	<div class='product-image col-6'>
-
+	<div class='product-image-container col-6'>
+		<img class='product-image' src="{{image}}">
 	</div>
 
 	<div class='product-info col-6'>
 		<div class='product-name row'>{{ product.name }}</div>
-		<div class='product-price-size row'>{{ product.price }} // {{ product.size }}</div>
-		<div class='product-stock row'>{{ product.stock }}</div>
-		<div class='product-location row'>{{ product.location }}</div>
+		<div class='product-price-size row'>Price - {{ product.price }} // Size - {{ product.size }}</div>
+		<div class='product-category row'>Category - {{ product.category }}</div>
+		<div class='product-location row'>Location - {{ product.location }}</div>
+		<div class='product-stock row'>Stock - {{ product.stock }}</div>
+		<div class='product-description row'>{{ product.description }}</div>
 	</div>
 
 	<div class='add-to-cart-container col-6'>
