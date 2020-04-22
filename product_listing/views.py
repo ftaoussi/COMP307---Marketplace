@@ -30,7 +30,7 @@ def listItem(request):
                 product.save()
                 image = Image(img=form.cleaned_data['image'], product=product)
                 image.save()
-                return HttpResponseRedirect(reverse('product_listing/list/'))
+                return HttpResponseRedirect(reverse('product_listing/index.html'))
             except: 
                 form.add_error(None, 'Unable to list product')
         context['form'] = form
