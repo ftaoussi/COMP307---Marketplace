@@ -197,3 +197,12 @@ table > * > * > * {
 	letter-spacing: .12rem;
 	padding-left: .1rem;
 }
+
+/*
+	Chat Style
+*/
+
+#room-name-submit {
+	background-color: white;
+	border: none;
+}

@@ -3,11 +3,11 @@
 <div class='form-container container-fluid justify-content-left'>
 	<form action="/list/" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
-<<<<<<< HEAD
+
 		{{ form.non_field_errors }}
 		<table> {{ form.as_table }}  </table>
 		<input type="submit" value="Submit">
-=======
+
 		<div class='form-row'>
 			<div class='listing-single-input form-group col'>
 				<div class='info-label'>Name</div>
