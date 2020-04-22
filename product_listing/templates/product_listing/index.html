@@ -57,12 +57,16 @@
 
 <div class='listings-container col-9'>
 	{% for p in products %}
-		<div class='listing'>
-			<div class='listing-image'><img src="{{ p.1 }}"></div>
-			<div class='listing-name'>{{ p.0.name }}</div>
-			<div class='listing-info'>{{ p.0.price_current }} // {{ p.0.size }}</div>
-		</div>
-	{% endfor %}
+<div class='listings-container col-9'>
+	<div class='listing'>
+		<div class='listing-image'><img src="{{ p.0 }}"></div>
+		<div class='listing-name'>{{ p.0.name }}</div>
+		<div class='listing-info'>Price:{{ p.0.price_current }} // Size:{{ p.0.size }}</div>
+		<div class='listing-seller'>Seller:{{ p.0.seller }} </div>
+		Click button to contact seller<br>
+    		<input id="room-name-submit" type="button" onclick='location.href="chat/{{user.id}}"' value="Enter">
+	</div>
+{% endfor %}
 </div>
   
 {% endblock %}
