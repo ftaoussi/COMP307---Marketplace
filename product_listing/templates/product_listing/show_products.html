@@ -2,13 +2,23 @@
 
 	<div class='listing col-6 justify-content-center'>
 		<div class='listing-image row col-12 justify-content-center'><img src="{{ product.img.url }}"></div>
-		
 		<div class='listing-name row col-12 justify-content-center'>{{ product.name }}</div>
-		<div class='listing-info row col-12 justify-content-center'>Price: {{ product.price_current }}  /  Size: {{ p.0.size }}</div>
+		<div class='listing-info row col-12 justify-content-center'>Price: {{ product.price_initial }}  /  Size: {{ product.size }}</div>
 		<div class='listing-seller row col-12 justify-content-center'>Seller: {{ product.seller }}</div>
-		<div class='listing-message row col-12 justify-content-center'>
-			<input id="room-name-submit" type="button" onclick='location.href="chat/{{product.seller.id}}"' value="Message Seller">
-		</div>
+		<div class='listing-desc row col-12 justify-content-center'>Description: {{ product.description }}</div>
+		{% if product.stock == 0 %}
+			<div class='listing-stock row col-12 justify-content-center'>Stock: OUT OF STOCK</div>
+		{% else %}
+			<div class='listing-stock row col-12 justify-content-center'>Stock: {{ product.stock }}</div>
+			<div class='listing-message row col-12 justify-content-center'>
+				<input id="room-name-submit" type="button" onclick='location.href="chat/{{product.seller.id}}"' value="Message Seller">
+			</div>
+			<div class='listing-cart row col-12 justify-content-center'>
+				<input id="add-to-cart-submit" type="button" onclick='add' value="Add to cart">
+			</div>
+		{% endif %} 
+		
+		
 	</div>
 
 {% endfor %}
