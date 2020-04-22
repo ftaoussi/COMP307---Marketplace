@@ -34,7 +34,6 @@ def listItem(request):
                 product.save()
                 print('product ok')
                 image = Image(img=form.cleaned_data['image'], product=product)
-                image = Image(img=form.cleaned_data['image'], product=product)
                 image.save()
                 print('image ok')
                 return render(request, 'product_listing/index.html', context)

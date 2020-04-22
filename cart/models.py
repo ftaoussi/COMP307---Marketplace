@@ -4,6 +4,7 @@ from account.models import User
 
 # Create your models here.
 
+#Items belong to a cart
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
 
@@ -18,7 +19,7 @@ class Basket(models.Model):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='basket_seller')
     time = models.TextField()
     shipping_to=models.TextField()
-    
+#orderitems are created after an order is confirmed, and belong to a basket
 class OrderItem(models.Model):
     product_string = models.TextField()
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
