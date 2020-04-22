@@ -22,11 +22,16 @@ html::-webkit-scrollbar {
 }
 
 .topline .col {
-	padding: 0;
+	
 }
 
 .right > * {
-	text-align: right;
+	padding: .2rem .8rem;
+}
+
+.right > * > * {
+	text-align: center;
+	font-size: .8rem;
 }
 
 a {
@@ -109,6 +114,10 @@ h5 {
 	padding: .3rem 0rem;
 }
 
+input .image {
+	background-color: transparent;
+}
+
 .submit > .form-control {
 	letter-spacing: .12rem;
 	margin-top: 1.5rem;
@@ -160,4 +169,31 @@ table > * > * > * {
 
 .login-container {
 	padding: 1% 2%;
+}
+
+/*
+	Cart Style
+*/
+
+.cart-container {
+
+}
+
+.cart-item {
+	padding: .8rem 0rem;
+	border-top: 1px black solid;
+}
+
+.cart-item-left > * {
+	font-size: 1rem;
+	padding: .2rem 1rem;
+}
+
+.remove-button {
+	background-color: transparent;
+	border: none;
+	font-weight: bold;
+	font-size: .8rem;
+	letter-spacing: .12rem;
+	padding-left: .1rem;
 }

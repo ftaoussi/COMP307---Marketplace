@@ -13,29 +13,32 @@
   </head>
 
   <body>
-	<div class='header'>
+	<div class='header container-fluid justify-content-center'>
 
 		<div class='topline container-fluid row align-items-center'>
 
-			<div class='left col-6'>
+			<div class='left col-md-6 row'>
 				<div class='name col'>
 					<a href="{% url 'product_listing:index' %}"><h1>MTLExchange</h1></a>
 				</div>
 			</div>
 
-			<div class='right col-6 row justify-content-end'>
+			<div class='right col-md-6 ml-auto row justify-content-end'>
 				{% block nav %}
 					{% if user.is_authenticated %}
-					<div class='new-listing col'>
+					<div class='new-listing'>
 						<h6><a href="{% url 'product_listing:listItem' %}">New Listing</a></h6>
 					</div>
-					<div class='cart col'>
+					<div class='messaging'>
+						<h6><a href="{% url 'chat:index' %}">Messaging</a></h6>
+					</div>
+					<div class='cart'>
 						<h6><a href="{% url 'cart:index' %}">Cart</a></h6>
 					</div>
-					<div class='profile col'>
+					<div class='profile'>
 						<h6><a href="{% url 'account:index' %}">Profile</a></h6>
 					</div>
-					<div class='logout col'>
+					<div class='logout'>
 						<h6><a href="{% url 'account:logout' %}">Logout</a></h6>
 					</div>
 					{% else %}
