@@ -29,11 +29,13 @@
                 </div>
 
                 <!--do this for every listing-->
+                {% for l in listings %}
                 <div class='row col-12'>
                     <div class='user-listing col-6'>
-                        <div class='info-value'>A Listing</div>
+                        <div class='info-value'>{{l.name}}</div>
                     </div>
                 </div>
+                {% endfor%}
                 <!--end-->
 
             </div>
@@ -58,7 +60,7 @@
                         <tbody>
                             <!--For each Purchase, make one of these-->
                             <!--Added automatic history listing-->
-                            {% for p in products %} <!--here 'products' is taken from product_listing.views, line 14-->
+                            {% for p in purchases %} <!--here 'products' is taken from product_listing.views, line 14-->
                                 <tr>
                                     <th scope="row">{{ p.id }}</th>
                                     <td>{{p.name}}</td>

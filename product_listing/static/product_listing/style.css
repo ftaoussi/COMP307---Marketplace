@@ -108,22 +108,18 @@ h5 {
 	margin: 0rem 0rem;
 }
 
-
-
 .listing-name, .listing-info, .listing-seller, .listing-message, .listing-cart, .listing-stock {
-	margin: 0rem 0rem;
+	margin: .1rem 0rem;
 	height: 2rem;
 	align-content: center;
 }
 
 .listing-name {
 	margin-top: 1rem;
-	font-size: 1rem;
 }
 
 .listing-button#room-name-submit, .listing-button#add-to-cart-submit {
 	border-radius: 1rem;
-	
 	font-size: .8rem;
 	letter-spacing: .12rem;
 	border: none;

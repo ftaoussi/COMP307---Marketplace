@@ -36,7 +36,7 @@ def listItem(request):
                 image = Image(img=form.cleaned_data['image'], product=product)
                 image.save()
                 print('image ok')
-                return render(request, 'product_listing/index.html', context)
+                context['feedback'] = 'Listing posted successfully.'
             except: 
                 print('error1')
                 form.add_error(None, 'Unable to list product')

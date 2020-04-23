@@ -38,19 +38,19 @@ class Product(models.Model):
     def get_absolute_url(self):
         return "/product/%i/" % self.id
 
-#class Order(models.Model):
-#    seller = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="seller")
-#    buyer = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="buyer")
-#    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
-#    time = models.TextField()
-#    price = models.IntegerField()
-#    shipping_to = models.TextField()
+class Order(models.Model):
+    seller = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="seller")
+    buyer = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="buyer")
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    time = models.TextField()
+    price = models.IntegerField()
+    shipping_to = models.TextField()
 
-    #def __str__(self):
-     #   str1=seller.__str__()
-    #    str2=product.__str__()
-   #     str3=buyer.__str__()
-  #      return (str1 + ", " + str2 + ", " + str3)
+    def __str__(self):
+        str1=seller.__str__()
+        str2=product.__str__()
+        str3=buyer.__str__()
+        return (str1 + ", " + str2 + ", " + str3)
     
 class Image(models.Model): 
     img = models.ImageField(upload_to="gallery/")

@@ -60,22 +60,22 @@
 
 	<div class='listings-container row col-8 justify-content-left'>
 		{% for product in products %}
-			<div class='listing {{ product.0.category }}  {{product.0.location }} {{ product.0.name }} col-6 justify-content-center'>
+			<div class='listing {{ product.0.category }} {{ product.0.location }} {{ product.0.name }} col-6 justify-content-center'>
 				<div class='listing-image-container row justify-content-center'>
 					<img class='listing-image row col-8' src="{{ product.1.img.url }}">
 				</div>
 				<div class='listing-name row justify-content-center'>{{ product.0.name }}</div>
 				<div class='listing-info row justify-content-center'>Price: {{ product.0.price_initial }}  /  Size: {{ product.0.size }}</div>
 				<div class='listing-seller row justify-content-center'>Seller: {{ product.0.seller }}</div>
-				<div class='listing-desc row col-12 justify-content-center'>Description: {{ product.0.description }}</div>
+				<div class='listing-desc row justify-content-center'>Description: {{ product.0.description }}</div>
 				{% if product.stock == 0 %}
-					<div class='listing-stock row col-12 justify-content-center'>Stock: OUT OF STOCK</div>
+					<div class='listing-stock row justify-content-center'>Stock: OUT OF STOCK</div>
 				{% else %}
-					<div class='listing-stock row col-12 justify-content-center'>Stock: {{ product.0.stock }}</div>
-					<div class='listing-message row col-12 justify-content-center'>
-						<input id="room-name-submit" class='listing-button' type="button" onclick='location.href="chat/{{product.seller.id}}"' value="Message Seller">
+					<div class='listing-stock row justify-content-center'>Stock: {{ product.0.stock }}</div>
+					<div class='listing-message row justify-content-center'>
+						<input id="room-name-submit" class='listing-button' type="button" onclick='location.href="chat/{{product.0.seller.id}}"' value="Message Seller">
 					</div>
-					<div class='listing-cart row col-12 justify-content-center'>
+					<div class='listing-cart row justify-content-center'>
 						<input id="add-to-cart-submit" class='listing-button' type="button" onclick='add' value="Add to Cart">
 					</div>
 				{% endif %} 

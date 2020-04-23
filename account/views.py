@@ -2,9 +2,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db import IntegrityError
-from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.models import User
+from product_listing.models import Order, Product
+
 import account.forms
 #from product_listing import templates
 
@@ -44,7 +47,10 @@ def loginUser(request):
 def index(request):
     if request.user.is_authenticated:
         context={}
-        #assign context variables
+        listings = Product.objects.filter(seller=request.user)
+        purchases = Order.objects.filter(buyer=request.user)
+        context['listings'] = listings
+        context['purchases'] = purchases
         return render(request, 'account/index.html', context)
     return redirect('account/login.html') 
 
