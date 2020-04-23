@@ -107,9 +107,10 @@ h5 {
 	margin: 0rem 0rem;
 }
 
-.listing-name, .listing-info, .listing-seller, .listing-message {
+.listing-name, .listing-info, .listing-seller, .listing-message, .listing-cart, .listing-stock {
 	margin: 0rem 0rem;
 	height: 2rem;
+	align-content: center;
 }
 
 .listing-name {
@@ -117,14 +118,15 @@ h5 {
 	font-size: 1rem;
 }
 
-#room-name-submit {
+.listing-button#room-name-submit, .listing-button#add-to-cart-submit {
+	border-radius: 1rem;
+	
 	font-size: .8rem;
 	letter-spacing: .12rem;
 	border: none;
-	padding: .4rem 1.2rem;
-	border-radius: 1rem;
-}
+	padding: .2rem .8rem;
 
+}
 
 /*
 	List Item Style
@@ -191,8 +193,6 @@ table {
 	margin-left: 1rem;
 }
 
-
-
 table > * > * > * {
 	padding: .9rem;
 }
@@ -210,7 +210,13 @@ table > * > * > * {
 */
 
 .cart-container {
+	
+}
 
+.cart-items {
+	border-bottom: 1px solid black;
+	min-height: 4rem;
+	margin-bottom: 1rem;
 }
 
 .cart-price {
@@ -237,8 +243,18 @@ table > * > * > * {
 	padding-left: .1rem;
 }
 
+.checkout-button-container {
+	padding: 1rem 0rem;
+}
+
+.checkout-button {
+	border-radius: 1rem;
+	padding: .4rem 1rem;
+	background-color: white;
+}
+
 .checkout-success-container {
-	padding: 1rem 2rem;
+	margin: 1rem 2rem;
 }
 
 /*

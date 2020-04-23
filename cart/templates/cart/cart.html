@@ -9,20 +9,27 @@
 			
 		</div>
 		{% if user.is_authenticated %}
-				{% for i in items %}
-					<div class='cart-item col-7 row'>
-						<div class='cart-item-left col-12'>
-							<div class='cart-item-name col-7 row'>{{i.product.name}}</div>
-							<div class='cart-item-location col-7 row'>{{i.product.location}}</div>
-							<div class='cart-item-price col-7 row'>{{i.product.price_current}}</div>
-							<div class='cart-item-size col-7 row'>{{i.product.size}}</div>
-							<div class='cart-item-date col-7 row'>{{i.product.time}}</div>
-							<div class='cart-item-remove col-7 row'><button class='remove-button'>Remove</button></div>
+			<div class='cart-items col-7'>
+				{% if items %}
+					{% for i in items %}
+						<div class='cart-item col-7 row'>
+							<div class='cart-item-left col-12'>
+								<div class='cart-item-name col-7 row'>{{i.product.name}}</div>
+								<div class='cart-item-location col-7 row'>{{i.product.location}}</div>
+								<div class='cart-item-price col-7 row'>{{i.product.price_current}}</div>
+								<div class='cart-item-size col-7 row'>{{i.product.size}}</div>
+								<div class='cart-item-date col-7 row'>{{i.product.time}}</div>
+								<div class='cart-item-remove col-7 row'><button class='remove-button'>Remove</button></div>
+							</div>
 						</div>
+
+					{% endfor %}
+				{% else %}
+					<div class='cart-empty-message'>
+						Your cart is empty :(
 					</div>
-
-				{% endfor %}
-
+				{% endif %}
+			</div>
 					<!-- Commenting out image thumbnail for now. NON-ESSENTIAL-->
 					{% comment %} <div class='cart-item-right col-5'>
 						<div class='cart-item-image-container'>
@@ -37,7 +44,7 @@
 		<div class='cart-price'>Total: {{total}}</div>
 		
 		<div class='checkout-button-container'>
-			<a href="{% url 'cart:checkout' %}">Checkout</a>
+			<a class='checkout-button' href="{% url 'cart:checkout' %}">Checkout</a>
 		</div>	
 		{% else %}
 			<div class='no-cart'>To add items to cart, sign in.</div>

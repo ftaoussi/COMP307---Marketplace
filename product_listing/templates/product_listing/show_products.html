@@ -11,10 +11,10 @@
 		{% else %}
 			<div class='listing-stock row col-12 justify-content-center'>Stock: {{ product.stock }}</div>
 			<div class='listing-message row col-12 justify-content-center'>
-				<input id="room-name-submit" type="button" onclick='location.href="chat/{{product.seller.id}}"' value="Message Seller">
+				<input id="room-name-submit" class='listing-button' type="button" onclick='location.href="chat/{{product.seller.id}}"' value="Message Seller">
 			</div>
 			<div class='listing-cart row col-12 justify-content-center'>
-				<input id="add-to-cart-submit" type="button" onclick='add' value="Add to cart">
+				<input id="add-to-cart-submit" class='listing-button' type="button" onclick='add' value="Add to Cart">
 			</div>
 		{% endif %} 
 		
