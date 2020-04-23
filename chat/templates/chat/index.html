@@ -1,44 +1,19 @@
 {% extends 'product_listing/global_template.html' %}
-
 {% block content %}
 
-<div>
-    <textarea id="chat-log" class='form-group form-control' cols="100" rows="16"></textarea>
-    <input id="chat-message-input" class='form-group form-control' type="text" size="100"/>
-    <input id="chat-message-submit" class='form-group form-control' type="button" value="Send"/>
-</div>
+    <div class='chat-container container-fluid row justify-content-start'>
+        <div class='chat-index-group col-12 form-row'>
+            <div class='chat-header col-12 info-label form-group'>Click button to contact seller</div>
+            <div class='chat-enter-button col-12 form-group'>
+                <input id="room-name-submit" class='form-control col-1' type="button" value="Enter">
+            </div>
+        </div>
+    </div>
 
-<script>
-    var chatSocket = new WebSocket(
-        'ws://' + window.location.host +
-        '/ws/chat/' + {{user.id}} + '/');
-
-    chatSocket.onmessage = function(e) {
-        var data = JSON.parse(e.data);
-        var message = data['message'];
-        document.getElementById('chat-log').value += (message + '\n');
-    };
-
-    chatSocket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
-
-    document.getElementById('chat-message-input').focus();
-    document.getElementById('chat-message-input').onkeyup = function(e) {
-        if (e.keyCode === 13) { 
-            document.getElementById('chat-message-submit').click();
-        }
-    };
-
-    document.getElementById('chat-message-submit').onclick = function(e) {
-        var messageInputDom = document.getElementById('chat-message-input');
-        var message = messageInputDom.value;
-        chatSocket.send(JSON.stringify({
-            'message': message
-        }));
-
-        messageInputDom.value = '';
-    };
-</script>
+    <script>
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            window.location.pathname = '/chat/' + {{user.id}} + '/';
+        };
+    </script>
 
 {% endblock %}
