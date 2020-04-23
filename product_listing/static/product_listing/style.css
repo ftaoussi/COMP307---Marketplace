@@ -101,11 +101,14 @@ h5 {
 
 .listing {
 	font-size: .8rem;
+	margin-bottom: 4rem;
 }
 
 .listing-image {
 	margin: 0rem 0rem;
 }
+
+
 
 .listing-name, .listing-info, .listing-seller, .listing-message, .listing-cart, .listing-stock {
 	margin: 0rem 0rem;

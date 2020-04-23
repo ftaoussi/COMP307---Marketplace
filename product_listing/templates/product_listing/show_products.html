@@ -1,7 +1,7 @@
 {% for product in products %}
 
 	<div class='listing {{ product.category }}  {{product.location }} {{ product.name }} col-6 justify-content-center'>
-		<div class='listing-image row col-12 justify-content-center'><img src="{{ product.img.url }}"></div>
+		<div class='listing-image row col-12 justify-content-center'><img src="{{ products1.img.url }}"></div>
 		<div class='listing-name row col-12 justify-content-center'>{{ product.name }}</div>
 		<div class='listing-info row col-12 justify-content-center'>Price: {{ product.price_initial }}  /  Size: {{ product.size }}</div>
 		<div class='listing-seller row col-12 justify-content-center'>Seller: {{ product.seller }}</div>
