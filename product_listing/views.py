@@ -12,6 +12,9 @@ def index(request):
 def delete_listing(request):
     return render(request, 'product_listing/delete_listing.html', {})
 
+def modify_listing(request):
+    return render(request, 'product_listing/delete_listing.html', {})
+
 def listItem(request):
     context={'products': Product.objects.all()} #added context so that it can be used in listing the history automatically
     if request.method=='POST':
