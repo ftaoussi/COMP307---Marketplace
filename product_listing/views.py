@@ -9,6 +9,9 @@ def index(request):
     context = {'products': zip(Product.objects.all(), Image.objects.all())}
     return render(request, 'product_listing/index.html', context)
 
+def delete_listing(request):
+    return render(request, 'product_listing/delete_listing.html', {})
+
 def listItem(request):
     context={'products': Product.objects.all()} #added context so that it can be used in listing the history automatically
     if request.method=='POST':
