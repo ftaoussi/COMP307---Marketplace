@@ -165,14 +165,18 @@ input .image {
 	margin-bottom: 2rem;
 }
 
-.user-info-header {
-	font-weight: bold;
-	margin-bottom: .8rem;
+.user-info > .row > .col-3, .user-listing {
+	margin-top: .2rem;
+	margin-bottom: .3rem;
 }
 
-.user-info .col {
-	
+.user-info-header {
+	font-weight: bold;
+	margin-top: 0rem;
+	margin-bottom: .2rem;
 }
+
+
 
 .info-value {
 	text-decoration: underline;

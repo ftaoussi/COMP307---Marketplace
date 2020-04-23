@@ -9,6 +9,7 @@
 {% load neighborhood_tags %}
 {% load product_tags %}
 
+{% load static %}
 
 <div class='index-container row container-fluid justify-content-left'>
 	<div class='filters-container col-3'>
@@ -112,5 +113,7 @@
 	</div>
 {% endfor %} {% endcomment %}
 </div>
-  
+
+<script src="{% static "product_listing/script.js" %}"></script>   
+
 {% endblock %}
