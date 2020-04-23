@@ -1,5 +1,4 @@
 
-
 $('.single-filter-option').click(function() {
 	console.log($(this).html())
 	$(this).toggleClass('selected')
@@ -13,7 +12,7 @@ function displayListings() {
 	if (selectedFilters.length == 0) {
 		console.log('selectedFilters is empty')
 		$('.single-filter-option').css('color', 'black')
-		$('.listing').css('display', 'inline')
+		$('.listing').fadeIn( "fast" )
 	}
 	else {
 		console.log('entering else block')
@@ -22,12 +21,12 @@ function displayListings() {
 		$('.listing').each(function( i ) {
 			if ( $(this).is(selectedFilters)) {
 				console.log($(this))
-				$(this).css('display', 'inline');
+				$(this).fadeIn( "fast" )
 			} else {
-				$(this).css('display', 'none');
+				$(this).fadeOut("fast");
 			}
 			if ($(this).hasClass('test')) {
-				$(this).css('display', 'inline');
+				$(this).fadeIn("fast");
 			}
 		});
 	}
