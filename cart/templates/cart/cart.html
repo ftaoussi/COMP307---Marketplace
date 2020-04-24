@@ -1,58 +1,39 @@
 {% extends 'product_listing/global_template.html'%}
 
 {% block content %}
-
-<div class='cart-container container-fluid justify-content-left'>
-	<div class='cart-item-container col-12'>
-		<div class='cart-header-container row align-content-center'>
-			<h4 class='cart-header col-6'>Cart</h4>
-			
-		</div>
-		{% if user.is_authenticated %}
-			<div class='cart-items col-7'>
-				{% if items %}
-					{% for i in items %}
-						<div class='cart-item col-7 row'>
-							<div class='cart-item-left col-12'>
-								<div class='cart-item-name col-7 row'>{{i.product.name}}</div>
-								<div class='cart-item-location col-7 row'>{{i.product.location}}</div>
-								<div class='cart-item-price col-7 row'>{{i.product.price_current}}</div>
-								<div class='cart-item-size col-7 row'>{{i.product.size}}</div>
-								<div class='cart-item-date col-7 row'>{{i.product.time}}</div>
-								<div class='cart-item-remove col-7 row'><button class='remove-button'>Remove</button></div>
-							</div>
-						</div>
-
-					{% endfor %}
-				{% else %}
-					<div class='cart-empty-message'>
-						Your cart is empty :(
-					</div>
-				{% endif %}
+	<div class='cart-container container-fluid justify-content-left'>
+		<div class='cart-item-container col-12'>
+			<div class='cart-header-container row align-content-center'>
+				<h4 class='cart-header col-6'>Cart</h4>
+				
 			</div>
-					<!-- Commenting out image thumbnail for now. NON-ESSENTIAL-->
-					{% comment %} <div class='cart-item-right col-5'>
-						<div class='cart-item-image-container'>
-							<img class='cart-item-image' src={{ p.image }}>
-						</div>
-					</div> {% endcomment %}
+			{% if user.is_authenticated %}
+				<div class='cart-items col-7'>
+					{% if items %}
+						{% for i in items %}
+							<div class='cart-item col-7 row'>
+								<div class='cart-item-left col-12'>
+									<div class='cart-item-name col-7 row'>{{i.product.name}}</div>
+									<div class='cart-item-location col-7 row'>{{i.product.location}}</div>
+									<div class='cart-item-price col-7 row'>{{i.product.price_current}}</div>
+									<div class='cart-item-size col-7 row'>{{i.product.size}}</div>
+									<div class='cart-item-date col-7 row'>{{i.product.time}}</div>
+									<div class='cart-item-remove col-7 row'><button class='remove-button'>Remove</button></div>
+								</div>
+							</div>
+						{% endfor %}
+					{% else %}
+						<div class='cart-empty-message'>Your cart is empty :(</div>
+					{% endif %}
+				</div>
 
-
-		
-		
-		
-		<div class='cart-price'>Total: {{total}}</div>
-		
-		<div class='checkout-button-container'>
-			<a class='checkout-button' href="{% url 'cart:checkout' %}">Checkout</a>
-		</div>	
-		{% else %}
-			<div class='no-cart'>To add items to cart, sign in.</div>
-		{% endif %}
-		
-		
+				<div class='cart-price'>Total: {{total}}</div>
+				<div class='checkout-button-container'>
+					<a class='checkout-button' href="{% url 'cart:checkout' %}">Checkout</a>
+				</div>	
+			{% else %}
+				<div class='no-cart'>To add items to cart, sign in.</div>
+			{% endif %}
+		</div>
 	</div>
-	
-</div>
-
 {% endblock %}

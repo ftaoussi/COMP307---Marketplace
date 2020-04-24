@@ -6,6 +6,7 @@ html, body {
 	background-color: #EAE6E2;
 	letter-spacing: .12rem;
 	-ms-overflow-style: none;
+	padding-bottom: 2rem;
 }
 
 html::-webkit-scrollbar {
@@ -19,10 +20,6 @@ html::-webkit-scrollbar {
 .header {
 	padding: 1% 1%;
 	color: black;
-}
-
-.topline .col {
-	
 }
 
 .right > * {
@@ -46,7 +43,6 @@ a:hover, h1:hover, .right > .col :hover, .single-filter-option:hover, button:hov
 	color: #555555;
 	cursor: pointer;
 }
-
 
 a:hover {
 	text-decoration: none;
@@ -73,10 +69,6 @@ h2 {
 	padding: 3% 0%;
 }
 
-.filters-container {
-
-}
-
 .single-filter {
 	margin: 1rem;
 }
@@ -100,8 +92,10 @@ h5 {
 }
 
 .listing {
+	padding: 2rem;
 	font-size: .8rem;
 	margin-bottom: 4rem;
+	height: 550px;
 }
 
 .listing-image {
@@ -177,8 +171,6 @@ input .image {
 	margin-bottom: .2rem;
 }
 
-
-
 .info-value {
 	text-decoration: underline;
 }
@@ -207,10 +199,6 @@ table > * > * > * {
 /*
 	Cart Style
 */
-
-.cart-container {
-	
-}
 
 .cart-items {
 	border-bottom: 1px solid black;
@@ -273,4 +261,3 @@ table > * > * > * {
 #chat-message-submit {
 	margin: 1rem 0rem;
 }
-

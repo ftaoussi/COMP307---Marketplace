@@ -1,34 +1,56 @@
+/*
+	Filter Functionality
+*/
+ 
+$('.single-filter-option').click(function() {
+	console.log($(this).html())
+	$(this).toggleClass('selected')
 
-// $('.single-filter-option').click(function() {
-// 	console.log($(this).html())
-// 	$(this).toggleClass('selected')
+	displayListings();
+});
 
-// 	displayListings();
-// });
+function displayListings() {
+	var selectedClasses = []
 
-// function displayListings() {
-// 	var selectedFilters = $('.selected').html();
+	console.log('here are the selected filters')
+	var $selectedFilters = $('.selected').each(function () {
+		console.log($(this).html())
+		selectedClasses.push($(this).html())
+	}); 
 
-// 	if (selectedFilters.length == 0) {
-// 		console.log('selectedFilters is empty')
-// 		$('.single-filter-option').css('color', 'black')
-// 		$('.listing').fadeIn( "fast" )
-// 	}
-// 	else {
-// 		console.log('entering else block')
-// 		$('.single-filter-option').css('color', '#777777')
-// 		$('.selected').css('color', 'black')
+	console.log("selectedClasses: " + selectedClasses)
 
-// 		console.log(selectedFilters)
-// 		$('.listing').each(function( i ) {
-
-// 			if ( $(this).is(selectedFilters)) {
+	if ($selectedFilters.length == 0) {
+		console.log('$selectedFilters is empty')
+		$('.single-filter-option').css('color', 'black')
+		$('.listing').fadeIn( "fast" )
+	}
+	else {
+		console.log('$selectedFilters is not empty')
+		$('.single-filter-option').css('color', '#777777')
+		$('.selected').css('color', 'black')
+		console.log(typeof selectedClasses)
+		// console.log($selectedFilters)
+		$('.listing').each(function( i ) {
+			console.log($(this))
+			if (shouldListingDisplay(selectedClasses, this.classList)) {
+				console.log(shouldListingDisplay(selectedClasses, this.classList))
+				$(this).fadeIn('fast')
+				this.style.display = 'inline'
+			} else {
+				console.log(shouldListingDisplay(selectedClasses, this.classList))
+				$(this).fadeOut('fast')
 				
-// 				console.log($(this))
-// 				$(this).fadeIn( "fast" )
-// 			} else {
-// 				$(this).fadeOut("fast");
-// 			}
-// 		});
-// 	}
-// }
+			}
+		});
+	}
+}
+
+function shouldListingDisplay(selectedClasses, classList) {
+	for (let i = 0; i < selectedClasses.length; i++) {
+		if (classList.contains(selectedClasses[i])) {
+			return true;
+		}
+	}
+	return false;
+}
