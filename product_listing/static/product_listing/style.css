@@ -110,7 +110,7 @@ h5 {
 
 
 
-.listing-name, .listing-info, .listing-seller, .listing-message, .listing-cart, .listing-stock {
+.listing-name, .listing-info, .listing-seller, .listing-message, .listing-cart, .listing-stock, .delete_listing, .modify_listing {
 	margin: 0rem 0rem;
 	height: 2rem;
 	align-content: center;
@@ -121,7 +121,7 @@ h5 {
 	font-size: 1rem;
 }
 
-.listing-button#room-name-submit, .listing-button#add-to-cart-submit {
+.listing-button#room-name-submit, .listing-button#add-to-cart-submit, .listing-button#delete_listing, .listing-button#modify_listing {
 	border-radius: 1rem;
 	
 	font-size: .8rem;
