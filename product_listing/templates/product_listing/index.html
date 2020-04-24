@@ -60,7 +60,7 @@
 
 	<div class='listings-container row col-8 justify-content-left'>
 		{% for product in products %}
-			<div class='listing {{ product.0.category }} {{ product.0.location }} {{ product.0.name }} col-6 justify-content-center'>
+			<div class='listing {{ product.0.category }} {{ product.0.location }} {{ product.0.name }} {{ product.0.subcategory }} col-6 justify-content-center'>
 				<div class='listing-image-container row justify-content-center'>
 					<img class='listing-image row col-8' src="{{ product.1.img.url }}">
 				</div>
