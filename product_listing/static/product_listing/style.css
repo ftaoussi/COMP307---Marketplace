@@ -261,6 +261,17 @@ table > * > * > * {
 }
 
 /*
+	Modify and Delete buttons style
+*/
+
+#delete_listing {
+	background-color: #e6ccff
+}
+#modify_listing {
+	background-color: #e6ccff
+}
+
+/*
 	Chat Style
 */
 
