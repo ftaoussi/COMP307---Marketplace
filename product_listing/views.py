@@ -9,14 +9,24 @@ def index(request):
     context = {'products': zip(Product.objects.all(), Image.objects.all())}
     return render(request, 'product_listing/index.html', context)
 
-def delete_listing(request, id):
+def want_delete_listing(request, id):
     obj = get_object_or_404(Product, id=id)
-    if request.method == "POST":
-        obj.delete()
-        return redirect("../")
     context = {
 	object: obj
     }
+    pdb.set_trace()
+    return render(request, 'product_listing/delete_listing.html', context)
+
+def delete_listing(request, id):
+    obj = get_object_or_404(Product, id=id)
+    if request.method == 'GET':
+        obj.delete()
+        pdb.set_trace()
+        return redirect("../../../")
+    context = {
+	object: obj
+    }
+    pdb.set_trace()
     return render(request, 'product_listing/delete_listing.html', context)
 
 def modify_listing(request, id):
