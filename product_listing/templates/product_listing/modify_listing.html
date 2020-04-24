@@ -1,0 +1,14 @@
+{% extends 'product_listing/global_template.html' %}
+{% block content %}<h3>Change Listing:</h3>
+<div class='form-container container-fluid justify-content-left'>
+	
+	<form action="/list/" method="post" enctype="multipart/form-data">
+		<div class='listing-product row col-12 justify-content-center'>
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			<table> {{ form.as_table }} </table>
+		<input id="modify_listing" type="submit" onclick='href="../"' value="Apply Changes">	
+		</div>
+	</form>
+</div>
+{% endblock %}

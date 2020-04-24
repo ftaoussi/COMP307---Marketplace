@@ -9,6 +9,43 @@ def index(request):
     context = {'products': zip(Product.objects.all(), Image.objects.all())}
     return render(request, 'product_listing/index.html', context)
 
+def delete_listing(request, id):
+    obj = get_object_or_404(Product, id=id)
+    if request.method == "POST":
+        obj.delete()
+        return redirect("../")
+    context = {
+	object: obj
+    }
+    return render(request, 'product_listing/delete_listing.html', context)
+
+def modify_listing(request, id):
+    obj = get_object_or_404(Product, id=id)
+    if request.method == 'POST':
+        form = product_listing.forms.ListingForm(request.POST, request.FILES)
+        if form.is_valid():
+            form = UserChangeForm(request.POST, instance.request.user)
+            obj.name = form.cleaned_data['name']
+            obj.seller = request.user,
+            obj.price_initial= form.cleaned_data['price'],
+            obj.price_current = form.cleaned_data['price'],
+            obj.category = form.cleaned_data['category'],
+            obj.subcategory = form.cleaned_data['subcategory'],
+            obj.location = form.cleaned_data['location'],
+            obj.time = datetime.datetime.now(),
+            obj.description = form.cleaned_data['description'],
+            obj.stock = form.cleaned_data['stock'],
+            obj.size = form.cleaned_data['size']
+            product.save()
+            image = Image(img=form.cleaned_data['image'], product=product)
+            image.save()
+            return render(request, 'product_listing/index.html', context)
+    context = {
+            object: obj
+        }
+    context['form'] = product_listing.forms.ListingForm
+    return render(request, 'product_listing/listItem.html', context)
+
 def listItem(request):
     context={'products': Product.objects.all()} #added context so that it can be used in listing the history automatically
     if request.method=='POST':

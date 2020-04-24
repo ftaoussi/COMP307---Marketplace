@@ -1,9 +1,10 @@
-from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import redirect, reverse
-from cart.models import Cart, Item
+from django.shortcuts import redirect, reverse, render
+from cart.models import Cart, Item, OrderItem, Basket
+from product_listing.models import Product
 import cart.forms
 import datetime
+from django.contrib.auth import authenticate
 
 # Create your views here.
 def index(request):
@@ -38,50 +39,39 @@ def index(request):
 def modifyCart(request, action, product_id, quantity):
 	context = {}
 	if request.user.is_authenticated:
-		userCart = Cart.objects.filter(user=request.user)
-		if userCart is None:
-			this_cart=Cart(user=request.user)
-			this_cart.save()
-			userCart = Cart.objects.filter(user=request.user)
+		try:
+			user_cart = Cart.objects.get(user=request.user)
+		except:
+			user_cart = Cart.objects.create(user=request.user)
 		if (action=='add'):
-			add_to_cart(request, product_id, option)
+			add_to_cart(request, product_id, quantity)
 		elif (action=='remove'):
-			remove_from_cart(request, product_id, option)
+			remove_from_cart(request, product_id, quantity)
 		elif (action=='clear'):
 			clear_cart(request)
 		else:
 			return HttpResponse("Error")
-		context['cart'] = userCart.first()
-		context['items'] = Item.objects.filter(cart=userCart)
 	else:
 		return reverse(request, 'account/login.html', context)
-	return redirect(request.path_info, context)
+	return redirect('/')
 
 def add_to_cart(request, product_id, quantity):
+	user_cart = Cart.objects.get(user=request.user)
 	product = Product.objects.get(id=product_id)
-	this_user = request.user
-	usercarts = Cart.objects.filter(user=user)
-	usercart = user_carts.first()
-	itemsMatching = Item.objects.filter(product=product, cart=user_cart, unit_price=product.unit_price)
-	if itemsMatching is not None:
+	itemsMatching = Item.objects.filter(product=product, cart=user_cart, unit_price=product.price_current)
+	this_item= itemsMatching.first()
+	if this_item is None:
 		item = Item(
 			product=product,
-			cart = usercart,
+			cart = user_cart,
 			quantity= quantity,
 			unit_price= product.price_current
 		)
 		item.save()
 	else:
-		itemMatching = itemsMatching.first()
-		itemMatching.quantity += quantity
-	
-	item = Item(
-		product=product,
-		cart = user_cart,
-		quantity= quantity,
-		unit_price= product.price_current
-	)
-	item.save()
+		print('ok')
+		new_q = this_item.quantity + quantity
+		itemsMatching.update(quantity=new_q)
 
 
 def remove_from_cart(request, product_id, quantity):
@@ -96,6 +86,8 @@ def remove_from_cart(request, product_id, quantity):
 
 def clear_cart(request):
 	this_cart = Cart.objects.get(user=request.user)
+	for item in this_cart.item_set.all():
+		item.delete()
 	this_cart.delete()
 
 
@@ -105,53 +97,70 @@ def checkout(request):
 		return reverse(request, 'account/login.html',context)
 	try:
 		this_cart = Cart.objects.get(user=request.user)
-	except Cart.DoesNotExist:
-		this_cart = Cart(user=request.user)
-		this_cart.save()
+	except:
+		return redirect('/cart')
+	if this_cart.item_set.all() is None:
+		form = forms.ShippingForm
+		msg = "Your cart is empty"
+		form.add_error(None, msg)
+		return render (request, 'cart/checkout.html', context)
 	user = request.user
 	baskets = []
+	items = this_cart.item_set.all()
 	if request.method=='POST':
-		form = forms.ShippingForm(request.POST)
+		form = cart.forms.ShippingForm(request.POST)
 		if form.is_valid():
 			try:
 				shipaddr = form.cleaned_data['street_address']+", "+form.cleaned_data['postcode']
-				for item in this_cart.item.set_all():
+				for item in items:
 					total = 0
 					for basket in baskets:
 						if (basket.seller != item.seller):
 							total += 1
 						else:
 							thisBasket = basket
-					if (total == baskets.size()):
+					if (total == len(baskets)):
 						thisBasket = Basket(
-							seller = item.seller,
+							seller = item.product.seller,
 							buyer = user,
 							time = datetime.datetime.now(),
 							shipping_to = shipaddr
 						)
 						thisBasket.save()
 						baskets.append(thisBasket)
-						
 					orderItem = OrderItem(
 						product_string = item.__str__(),
-						unit_price = item.price,
-						product = item,
+						unit_price = item.unit_price,
+						product = item.product,
 						buyer = user,
-						seller = item.seller,
+						seller = item.product.seller,
 						basket = thisBasket,
 						quantity = item.quantity,
 						shipping_to = shipaddr
 					)
 					orderItem.save()
 					product = item.product
-					product.stock -= item.quantity
+					if product.stock > item.quantity:
+						product.stock -= item.quantity
+					else:
+						Product.objects.filter(pk=product.pk).update(stock=0)
+					item.delete()
+				this_cart.delete()
 			except:
-				return HttpResponse("Please try again")
-	else:
-		context['form'] = cart.forms.ShippingForm
-		return render(request, 'cart/checkout.html', context)
-	return HttpResponseRedirect(request, 'cart/checkoutsuccess.html', context)
+				print('except')
+				return HttpResponse("Please try again")	
+			return render(request, 'cart/checkoutsuccess.html', context)
 
+		else:
+			print('form is invalid')
+			form = cart.forms.ShippingForm
+			context['form'] = form
+			return render (request, 'cart/checkout.html', context)
+	else: 
+		form = cart.forms.ShippingForm
+		context['form'] = form
+		return render (request, 'cart/checkout.html', context)
+	
 
 def checkoutsuccess(request):
 	return render(request, 'cart/checkoutsuccess.html')

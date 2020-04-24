@@ -16,6 +16,12 @@
 			<div class='listing-cart row col-12 justify-content-center'>
 				<input id="add-to-cart-submit" class='listing-button' type="button" onclick='add' value="Add to Cart">
 			</div>
+			<div class='delete_listing row col-12 justify-content-center'>
+				<input id="delete_listing" class='listing-button' type="button" onclick='location.href="{{product.id}}/delete_listing"' value="Delete Listing">
+			</div>
+			<div class='modify_listing row col-12 justify-content-center'>
+				<input id="modify_listing" class='listing-button' type="button" onclick='location.href="{{product.id}}/modify_listing"' value="Modify Listing">
+			</div>
 		{% endif %} 
 		
 		

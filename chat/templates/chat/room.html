@@ -1,13 +1,18 @@
 {% extends 'product_listing/global_template.html' %}
-
 {% block content %}
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+</head>
+<body>
 <div>
-    <textarea id="chat-log" class='form-group form-control' cols="100" rows="16"></textarea>
-    <input id="chat-message-input" class='form-group form-control' type="text" size="100"/>
-    <input id="chat-message-submit" class='form-group form-control' type="button" value="Send"/>
+    <br><textarea id="chat-log" cols="100" rows="20"></textarea><br/>
+    <br><input id="chat-message-input" type="text" size="100"/><br/>
+    <br><input id="chat-message-submit" type="button" value="Send"/><br/>
 </div>
-
+</body>
 <script>
     var chatSocket = new WebSocket(
         'ws://' + window.location.host +
@@ -40,5 +45,5 @@
         messageInputDom.value = '';
     };
 </script>
-
+</html>
 {% endblock %}
