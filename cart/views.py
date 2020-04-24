@@ -94,53 +94,71 @@ def checkout(request):
 	if request.user.is_authenticated == False:
 		return reverse(request, 'account/login.html',context)
 	try:
-		user_cart = Cart.objects.get(user=request.user)
+		this_cart = Cart.objects.get(user=request.user)
 	except:
-		user_cart = Cart.objects.create(user=request.user)
+		return redirect('/cart')
+	if this_cart.item_set.all() is None:
+		form = forms.ShippingForm
+		msg = "Your cart is empty"
+		form.add_error(None, msg)
+		return render (request, 'cart/checkout.html', context)
 	user = request.user
 	baskets = []
+	items = this_cart.item_set.all()
 	if request.method=='POST':
-		form = forms.ShippingForm(request.POST)
+		form = cart.forms.ShippingForm(request.POST)
 		if form.is_valid():
 			try:
 				shipaddr = form.cleaned_data['street_address']+", "+form.cleaned_data['postcode']
-				for item in this_cart.item.set_all():
+				for item in items:
 					total = 0
 					for basket in baskets:
 						if (basket.seller != item.seller):
 							total += 1
 						else:
 							thisBasket = basket
-					if (total == baskets.size()):
+					if (total == len(baskets)):
 						thisBasket = Basket(
-							seller = item.seller,
+							seller = item.product.seller,
 							buyer = user,
 							time = datetime.datetime.now(),
 							shipping_to = shipaddr
 						)
 						thisBasket.save()
 						baskets.append(thisBasket)
-						
 					orderItem = OrderItem(
 						product_string = item.__str__(),
-						unit_price = item.price,
-						product = item,
+						unit_price = item.unit_price,
+						product = item.product,
 						buyer = user,
-						seller = item.seller,
+						seller = item.product.seller,
 						basket = thisBasket,
 						quantity = item.quantity,
 						shipping_to = shipaddr
 					)
 					orderItem.save()
 					product = item.product
-					product.stock -= item.quantity
+					if product.stock > item.quantity:
+						product.stock -= item.quantity
+					else:
+						Product.objects.filter(pk=product.pk).update(stock=0)
+					item.delete()
+				this_cart.delete()
 			except:
-				return HttpResponse("Please try again")
-	else:
-		context['form'] = cart.forms.ShippingForm
-		return render(request, 'cart/checkout.html', context)
-	return HttpResponseRedirect(request, 'cart/checkoutsuccess.html', context)
+				print('except')
+				return HttpResponse("Please try again")	
+			return render(request, 'cart/checkoutsuccess.html', context)
 
+		else:
+			print('form is invalid')
+			form = cart.forms.ShippingForm
+			context['form'] = form
+			return render (request, 'cart/checkout.html', context)
+	else: 
+		form = cart.forms.ShippingForm
+		context['form'] = form
+		return render (request, 'cart/checkout.html', context)
+	
 
 def checkoutsuccess(request):
 	return render(request, 'cart/checkoutsuccess.html')
