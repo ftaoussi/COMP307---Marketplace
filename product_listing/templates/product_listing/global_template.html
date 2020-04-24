@@ -17,54 +17,53 @@
 	<title>MTLExchange</title>
   </head>
 
-  <body>
-	<div class='header container-fluid justify-content-center'>
+	<body>
+		<div class='header container-fluid justify-content-center'>
+			<div class='topline container-fluid row align-items-center'>
 
-		<div class='topline container-fluid row align-items-center'>
-
-			<div class='left col-md-6 row'>
-				<div class='name col'>
-					<a href="{% url 'product_listing:index' %}"><h1>MTLExchange</h1></a>
+				<div class='left col-md-6 row'>
+					<div class='name col'>
+						<a href="{% url 'product_listing:index' %}"><h1>MTLExchange</h1></a>
+					</div>
 				</div>
+
+				<div class='right col-md-6 ml-auto row justify-content-end'>
+					{% block nav %}
+						{% if user.is_authenticated %}
+						<div class='new-listing'>
+							<h6><a href="{% url 'product_listing:listItem' %}">New Listing</a></h6>
+						</div>
+						
+						<div class='cart'>
+							<h6><a href="{% url 'cart:index' %}">Cart</a></h6>
+						</div>
+						<div class='profile'>
+							<h6><a href="{% url 'account:index' %}">Profile</a></h6>
+						</div>
+						<div class='logout'>
+							<h6><a href="{% url 'account:logout' %}">Logout</a></h6>
+						</div>
+						{% else %}
+						<div class='cart col-2'>
+							<h6><a href="{% url 'account:login' %}">Login</a></h6>
+						</div>
+						<div class='profile col-2'>
+							<h6><a href="{% url 'account:signup' %}">Sign Up</a></h6>
+						</div>
+						{% endif %}
+					{% endblock %}
+				</div>
+
 			</div>
 
-			<div class='right col-md-6 ml-auto row justify-content-end'>
-				{% block nav %}
-					{% if user.is_authenticated %}
-					<div class='new-listing'>
-						<h6><a href="{% url 'product_listing:listItem' %}">New Listing</a></h6>
-					</div>
-					
-					<div class='cart'>
-						<h6><a href="{% url 'cart:index' %}">Cart</a></h6>
-					</div>
-					<div class='profile'>
-						<h6><a href="{% url 'account:index' %}">Profile</a></h6>
-					</div>
-					<div class='logout'>
-						<h6><a href="{% url 'account:logout' %}">Logout</a></h6>
-					</div>
-					{% else %}
-					<div class='cart col-2'>
-						<h6><a href="{% url 'account:login' %}">Login</a></h6>
-					</div>
-					<div class='profile col-2'>
-						<h6><a href="{% url 'account:signup' %}">Sign Up</a></h6>
-					</div>
-					{% endif %}
-				{% endblock %}
+			<div class='secondline container-fluid row'>
+				<h2 class='tagline col'>Find Independently and Locally Created Work</h2>
 			</div>
-
 		</div>
 
-		<div class='secondline container-fluid row'>
-			<h2 class='tagline col'>Find Independently and Locally Created Work</h2>
+		<div class='container-fluid row justify-content-center'>
+			{% block content %}
+			{% endblock %}
 		</div>
-	</div>
-
-	<div class='container-fluid row justify-content-center'>
-		{% block content %}
-		{% endblock %}
-	</div>
-  </body>
+	</body>
 </html>

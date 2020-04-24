@@ -13,11 +13,11 @@ def delete_listing(request, id):
     obj = get_object_or_404(Product, id=id)
     if request.method == "POST":
         obj.delete()
-        return redirect("../")
+        return redirect("product_listing/index.html")
     context = {
 	object: obj
     }
-    return render(request, 'product_listing/delete_listing.html', context)
+    return render(request, 'product_listing:delete_listing', context)
 
 def modify_listing(request, id):
     obj = get_object_or_404(Product, id=id)
