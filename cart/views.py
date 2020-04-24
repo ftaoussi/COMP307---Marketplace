@@ -86,6 +86,8 @@ def remove_from_cart(request, product_id, quantity):
 
 def clear_cart(request):
 	this_cart = Cart.objects.get(user=request.user)
+	for item in this_cart.item_set.all():
+		item.delete()
 	this_cart.delete()
 
 
