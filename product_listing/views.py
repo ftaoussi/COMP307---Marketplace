@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from product_listing.models import Product, Image
 import product_listing.forms
@@ -36,15 +36,15 @@ def modify_listing(request, id):
             obj.description = form.cleaned_data['description'],
             obj.stock = form.cleaned_data['stock'],
             obj.size = form.cleaned_data['size']
-            product.save()
-            image = Image(img=form.cleaned_data['image'], product=product)
+            obj.save()
+            image = Image(img=form.cleaned_data['image'], product=obj)
             image.save()
             return render(request, 'product_listing/index.html', context)
     context = {
             object: obj
         }
     context['form'] = product_listing.forms.ListingForm
-    return render(request, 'product_listing/listItem.html', context)
+    return render(request, 'product_listing/modify_listing.html', context)
 
 def listItem(request):
     context={'products': Product.objects.all()} #added context so that it can be used in listing the history automatically
