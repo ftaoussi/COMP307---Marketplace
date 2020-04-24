@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from product_listing.models import Product, Image
 import product_listing.forms
@@ -14,14 +14,12 @@ def want_delete_listing(request, id):
     context = {
 	object: obj
     }
-    pdb.set_trace()
     return render(request, 'product_listing/delete_listing.html', context)
 
 def delete_listing(request, id):
     obj = get_object_or_404(Product, id=id)
     if request.method == 'GET':
         obj.delete()
-        pdb.set_trace()
         return redirect("../../../")
     context = {
 	object: obj
