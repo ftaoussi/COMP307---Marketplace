@@ -1,9 +1,10 @@
-from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import redirect, reverse
-from cart.models import Cart, Item
+from django.shortcuts import redirect, reverse, render
+from cart.models import Cart, Item, OrderItem, Basket
+from product_listing.models import Product
 import cart.forms
 import datetime
+from django.contrib.auth import authenticate
 
 # Create your views here.
 def index(request):
@@ -38,50 +39,39 @@ def index(request):
 def modifyCart(request, action, product_id, quantity):
 	context = {}
 	if request.user.is_authenticated:
-		userCart = Cart.objects.filter(user=request.user)
-		if userCart is None:
-			this_cart=Cart(user=request.user)
-			this_cart.save()
-			userCart = Cart.objects.filter(user=request.user)
+		try:
+			user_cart = Cart.objects.get(user=request.user)
+		except:
+			user_cart = Cart.objects.create(user=request.user)
 		if (action=='add'):
-			add_to_cart(request, product_id, option)
+			add_to_cart(request, product_id, quantity)
 		elif (action=='remove'):
-			remove_from_cart(request, product_id, option)
+			remove_from_cart(request, product_id, quantity)
 		elif (action=='clear'):
 			clear_cart(request)
 		else:
 			return HttpResponse("Error")
-		context['cart'] = userCart.first()
-		context['items'] = Item.objects.filter(cart=userCart)
 	else:
 		return reverse(request, 'account/login.html', context)
-	return redirect(request.path_info, context)
+	return redirect('/')
 
 def add_to_cart(request, product_id, quantity):
+	user_cart = Cart.objects.get(user=request.user)
 	product = Product.objects.get(id=product_id)
-	this_user = request.user
-	usercarts = Cart.objects.filter(user=user)
-	usercart = user_carts.first()
-	itemsMatching = Item.objects.filter(product=product, cart=user_cart, unit_price=product.unit_price)
-	if itemsMatching is not None:
+	itemsMatching = Item.objects.filter(product=product, cart=user_cart, unit_price=product.price_current)
+	this_item= itemsMatching.first()
+	if this_item is None:
 		item = Item(
 			product=product,
-			cart = usercart,
+			cart = user_cart,
 			quantity= quantity,
 			unit_price= product.price_current
 		)
 		item.save()
 	else:
-		itemMatching = itemsMatching.first()
-		itemMatching.quantity += quantity
-	
-	item = Item(
-		product=product,
-		cart = user_cart,
-		quantity= quantity,
-		unit_price= product.price_current
-	)
-	item.save()
+		print('ok')
+		new_q = this_item.quantity + quantity
+		itemsMatching.update(quantity=new_q)
 
 
 def remove_from_cart(request, product_id, quantity):
@@ -104,10 +94,9 @@ def checkout(request):
 	if request.user.is_authenticated == False:
 		return reverse(request, 'account/login.html',context)
 	try:
-		this_cart = Cart.objects.get(user=request.user)
-	except Cart.DoesNotExist:
-		this_cart = Cart(user=request.user)
-		this_cart.save()
+		user_cart = Cart.objects.get(user=request.user)
+	except:
+		user_cart = Cart.objects.create(user=request.user)
 	user = request.user
 	baskets = []
 	if request.method=='POST':
