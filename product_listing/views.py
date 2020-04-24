@@ -24,7 +24,6 @@ def modify_listing(request, id):
     if request.method == 'POST':
         form = product_listing.forms.ListingForm(request.POST, request.FILES)
         if form.is_valid():
-            form = UserChangeForm(request.POST, instance.request.user)
             obj.name = form.cleaned_data['name']
             obj.seller = request.user,
             obj.price_initial= form.cleaned_data['price'],
