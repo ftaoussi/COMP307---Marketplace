@@ -14,12 +14,13 @@
 							<div class='cart-item col-7 row'>
 								<div class='cart-item-left col-12'>
 									<div class='cart-item-name col-7 row'>{{i.product.name}}</div>
-									<div class='cart-item-location col-7 row'>{{i.product.location}}</div>
-									<div class='cart-item-price col-7 row'>${{i.product.price_current}}</div>
-									<div class='cart-item-size col-7 row'>Size:{{i.product.size}}</div>
-									<div class='cart-item-quantity col-7 row'>Quantity:{{i.quantity}}</div>
+									<div class='cart-item-location col-7 row'>Location: {{i.product.location}}</div>
+									<div class='cart-item-price col-7 row'>Price: ${{i.product.price_current}}</div>
+									<div class='cart-item-size col-7 row'>Size: {{i.product.size}}</div>
+									<div class='cart-item-quantity col-7 row'>Quantity: {{i.quantity}}</div>
 									<div class='cart-item-date col-7 row'>Added on: {{i.product.time}}</div>
-									<div class='cart-item-remove col-7 row'><button class='remove-button'>Remove</button></div>
+									<input style="width: 70px" type="number" id="quantity" name="quantity" min="1" max="{{product.0.stock}}" value="1">
+									<div class='cart-item-remove col-7 row'><button class='remove-button' onclick='location.href="cart/action=add&id={{product.0.id}}&quantity="+document.getElementById("quantity").value'>Remove</button></div>
 								</div>
 							</div>
 						{% endfor %}

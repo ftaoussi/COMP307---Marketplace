@@ -84,7 +84,10 @@
 						<input id="room-name-submit" class='listing-button' type="button" onclick='location.href="chat/{{product.0.seller.id}}"' value="Message Seller">
 					</div>
 					<div class='listing-cart row justify-content-center'>
-						<input id="add-to-cart-submit" class='listing-button' type="button" onclick='add' value="Add to Cart">
+						<input type="number" id="quantity" name="quantity" min="1" max="{{product.0.stock}}" value="1">
+					</div>
+					<div class='listing-cart row justify-content-center'>
+						<input id="add-to-cart-submit" class='listing-button' type="button" onclick='location.href="cart/action=add&id={{product.0.id}}&quantity="+document.getElementById("quantity").value' value="Add to Cart">
 					</div>
 					{% if user.id == product.0.seller.id %}
 					<div class='delete_listing row col-12 justify-content-center'>
