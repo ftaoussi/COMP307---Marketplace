@@ -56,6 +56,7 @@ def modifyCart(request, action, product_id, quantity):
 	return redirect('/')
 
 def add_to_cart(request, product_id, quantity):
+	print('getting to cart"s add to cart')
 	user_cart = Cart.objects.get(user=request.user)
 	product = Product.objects.get(id=product_id)
 	itemsMatching = Item.objects.filter(product=product, cart=user_cart, unit_price=product.price_current)

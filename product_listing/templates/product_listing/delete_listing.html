@@ -2,9 +2,6 @@
 {% block content %}
 	<div class='listing-cart row col-12 justify-content-center'>
 		Are you sure you want to delete this listing?
-		<form action="{% url 'index:delete_listing' %}" method="POST">
-			<input id="delete_listing" action='product_listing/index.html' type="button" value="Delete listing"></input>
-		</form>
-		
+		<input id="delete_listing1" type="submit" action='delete' onclick='location.href="delete_success/"' name='delete_listing1' value="Delete listing">
 	</div>
 {% endblock %}

@@ -68,16 +68,8 @@
 				<div class='listing-info row justify-content-center'>Price: {{ product.0.price_initial }}  /  Size: {{ product.0.size }}</div>
 				<div class='listing-seller row justify-content-center'>Seller: {{ product.0.seller }}</div>
 				<div class='listing-desc row justify-content-center'>Description: {{ product.0.description }}</div>
-				{% if product.stock == 0 %}
+				{% if product.0.stock == 0 %}
 					<div class='listing-stock row justify-content-center'>Stock: OUT OF STOCK</div>
-				{% else %}
-					<div class='listing-stock row justify-content-center'>Stock: {{ product.0.stock }}</div>
-					<div class='listing-message row justify-content-center'>
-						<input id="room-name-submit" class='listing-button' type="button" onclick='location.href="chat/{{product.0.seller.id}}"' value="Message Seller">
-					</div>
-					<div class='listing-cart row justify-content-center'>
-						<input id="add-to-cart-submit" class='listing-button'  action='add' type="button"value="Add to Cart">
-					</div>
 					{% if user.id == product.0.seller.id %}
 					<div class='delete_listing row col-12 justify-content-center'>
 						<input id="delete_listing" class='listing-button' action='delete' type="button" onclick='location.href="{{product.0.id}}/delete_listing"' value="Delete Listing">
@@ -86,12 +78,36 @@
 						<input id="modify_listing" class='listing-button' action='modify' type="button" onclick='location.href="{{product.0.id}}/modify_listing"' value="Modify Listing">
 					</div>			
 					{% endif %}
-				{% endif %} 
+				{% else %}
+					<div class='listing-stock row justify-content-center'>Stock: {{ product.0.stock }}</div>
+					<div class='listing-message row justify-content-center'>
+						<input id="room-name-submit" class='listing-button' type="button" onclick='location.href="chat/{{product.0.seller.id}}"' value="Message Seller">
+					</div>
+					<div class='listing-cart row justify-content-center'>
+						<form action="" class='listing-button' method="GET">
+							<input name='quantity' id="quantity" type="number"/>
+							
+							<a href="{% url 'cart/:remove_from_cart' args=(product.id, 1,) %}">Remove item</a>
+							<input name="add-to-cart" class='listing-button' action='add-to-cart' type="submit" value="Add to Cart"/>
+						</form>
+					</div>
+					{% if user.id == product.0.seller.id %}
+						<div class='delete_listing row col-12 justify-content-center'>
+							<input id="delete_listing" class='listing-button' action='delete' type="button" onclick='location.href="{{product.0.id}}/delete_listing"' value="Delete Listing">
+						</div>
+						<div class='modify_listing row col-12 justify-content-center'>
+							<input id="modify_listing" class='listing-button' action='modify' type="button" onclick='location.href="{{product.0.id}}/modify_listing"' value="Modify Listing">
+						</div>
+					{% endif %}
+				{% endif %}
 			</div>
 		{% endfor %}
 	</div>
 </div>
 
-<script src="{% static "product_listing/script.js" %}"></script>   
+<script>
+</script>
+
+<script src="{% static "product_listing/script.js" %}"></script>
 
 {% endblock %}

@@ -95,14 +95,11 @@ h5 {
 	padding: 2rem;
 	font-size: .8rem;
 	margin-bottom: 4rem;
-	height: 550px;
 }
 
 .listing-image {
 	margin: 0rem 0rem;
 }
-
-
 
 .listing-name, .listing-info, .listing-seller, .listing-message, .listing-cart, .listing-stock, .delete_listing, .modify_listing {
 	margin: .1rem 0rem;
