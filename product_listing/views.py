@@ -100,8 +100,3 @@ def viewItem(request, product_id):
     img = Image.objects.get(product=product)
     context = {'product': product, 'image': img, 'pid': product_id}
     return render(request,'product_listing/product.html', context)
-
-def submitToCart(request):
-    if(request.GET.get('add-to-cart')):
-        cartViews.add_to_cart(request, int(request.GET.get('mytextbox')))
-    return render(request,'product_listing/index.html', context)

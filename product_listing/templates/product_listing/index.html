@@ -89,7 +89,6 @@
 						<input id="room-name-submit" class='listing-button' type="button" onclick='location.href="chat/{{product.0.seller.id}}"' value="Message Seller">
 					</div>
 					<div class='listing-cart row justify-content-center'>
-						
 						<input name='quantity' id="add-to-cart-submit" class='listing-button' type="button" onclick='location.href="cart/action=add&id={{product.0.id}}&quantity="+document.getElementById("quantity").value' value="Add to Cart">
 					</div>
 					{% if user.id == product.0.seller.id %}

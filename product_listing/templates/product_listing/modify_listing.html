@@ -1,7 +1,10 @@
 {% extends 'product_listing/global_template.html' %}
-{% block content %}<h3>Change Listing:</h3>
+{% block content %}
+
+{% load static %}
+
 <div class='form-container container-fluid justify-content-left'>
-	
+	<h3>Change Listing:</h3>
 	<form method="post" enctype="multipart/form-data">
 		<div class='listing-product row col-12 justify-content-center'>
 			{% csrf_token %}
@@ -11,4 +14,7 @@
 		</div>
 	</form>
 </div>
+
+<script src="{% static "product_listing/listItem_script.js" %}"></script>
+
 {% endblock %}
